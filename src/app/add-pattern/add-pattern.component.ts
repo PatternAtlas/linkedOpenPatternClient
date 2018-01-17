@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { GithubService } from '../_services/github.service';
-import { error } from 'util';
-
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
   selector: 'app-add-pattern',
   templateUrl: './add-pattern.component.html',
@@ -12,13 +11,23 @@ export class AddPatternComponent implements OnInit {
   patternContent = '';
   patternName = '';
   token = '';
-  constructor(private githubService: GithubService) { }
+  constructor(private githubService: GithubService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+   }
 
   ngOnInit() {
   }
 
   savePattern() {
-    this.githubService.addPattern(this.patternName, this.patternContent, this.token).subscribe(succ => console.log(succ), err => console.log(err));
+    this.githubService.addPattern(this.patternName, this.patternContent, this.token)
+      .subscribe(succ => {
+        this.toastr.success('Pattern saved!', 'Success!');
+        this.patternName = '';
+        this.patternContent = '';
+      }, err => console.log(err));
   }
 
+  showToaster() {
+    this.toastr.success('You are awesome!', 'Success!');
+  }
 }

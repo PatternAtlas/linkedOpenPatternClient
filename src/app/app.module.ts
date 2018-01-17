@@ -11,6 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {AppRoutingModule} from './app-routing.module';
 import { AddPatternComponent } from './add-pattern/add-pattern.component';
 import { GithubService } from './_services/github.service';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -22,9 +24,11 @@ import { GithubService } from './_services/github.service';
   ],
   imports: [
     AppRoutingModule,
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ToastModule.forRoot()
   ],
   providers: [SparqlService, GithubService],
   bootstrap: [AppComponent]
