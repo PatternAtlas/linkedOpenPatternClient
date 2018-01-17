@@ -1,3 +1,11 @@
-<p>
-  add-pattern works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="form-group">
+      <label for="patternName">Name:</label>
+      <input class="form-control" id="patternName" [(ngModel)]="patternName">
+      <label for="comment">Pattern:</label>
+      <textarea class="form-control" rows="5" id="comment" [(ngModel)]="patternContent"></textarea>
+    </div>
+    <button type="button" class="btn btn-default" (click)="savePattern()">save</button>
+  </div>
+</div>

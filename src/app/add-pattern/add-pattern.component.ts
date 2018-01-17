@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GithubService } from '../_services/github.service';
+import { error } from 'util';
 
 @Component({
   selector: 'app-add-pattern',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPatternComponent implements OnInit {
 
-  constructor() { }
+  patternContent = '';
+  patternName = '';
+  constructor(private githubService: GithubService) { }
 
   ngOnInit() {
+  }
+
+  savePattern() {
+    this.githubService.addPattern(this.patternName, this.patternContent).subscribe(succ => console.log(succ), err => console.log(err));
   }
 
 }

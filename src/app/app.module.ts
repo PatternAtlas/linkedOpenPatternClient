@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {AppRoutingModule} from './app-routing.module';
 import { AddPatternComponent } from './add-pattern/add-pattern.component';
+import { GithubService } from './_services/github.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { AddPatternComponent } from './add-pattern/add-pattern.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [SparqlService],
+  providers: [SparqlService, GithubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
