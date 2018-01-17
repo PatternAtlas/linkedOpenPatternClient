@@ -24,10 +24,10 @@ export class AddPatternComponent implements OnInit {
         this.toastr.success('Pattern saved!', 'Success!');
         this.patternName = '';
         this.patternContent = '';
-      }, err => console.log(err));
+      }, err => this.toastr.error('Something went wrong!', 'Error!'));
   }
 
-  showToaster() {
-    this.toastr.success('You are awesome!', 'Success!');
+  getBaseUrl() {
+    this.githubService.getBaseUrl();
   }
 }
