@@ -5,16 +5,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class GithubService {
 
-  private auth =  { Authorization: 'Token '};
+
   constructor(private http: HttpClient) { }
 
-  addPattern(patternName: string, content: string) {
+  addPattern(patternName: string, content: string, authToken: string) {
     const body = {
       'message': `added ${patternName}`,
       'content': btoa(content)
     };
+    const auth =  { Authorization: `Token ${authToken}`};
     return this.http.put(`https://api.github.com/repos/ckrieger/githubApiTests/contents/patterns/${patternName}.html`,
-    body, {headers: this.auth });
+    body, {headers: auth });
   }
 
   getPattern() {

@@ -11,13 +11,14 @@ export class AddPatternComponent implements OnInit {
 
   patternContent = '';
   patternName = '';
+  token = '';
   constructor(private githubService: GithubService) { }
 
   ngOnInit() {
   }
 
   savePattern() {
-    this.githubService.addPattern(this.patternName, this.patternContent).subscribe(succ => console.log(succ), err => console.log(err));
+    this.githubService.addPattern(this.patternName, this.patternContent, this.token).subscribe(succ => console.log(succ), err => console.log(err));
   }
 
 }

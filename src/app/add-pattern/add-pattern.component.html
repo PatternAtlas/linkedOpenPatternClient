@@ -1,11 +1,21 @@
 <div class="container">
+
+  <div class="row" style="margin-bottom: 5%;">
+   <div class="form-group col-lg-5">
+      <label>AuthToken:</label>
+      <input class="form-control" [(ngModel)]="token">
+    </div>
+  </div>
+
   <div class="row">
-    <div class="form-group">
+    <div class="form-group col-lg-12">
       <label for="patternName">Name:</label>
       <input class="form-control" id="patternName" [(ngModel)]="patternName">
+      
       <label for="comment">Pattern:</label>
       <textarea class="form-control" rows="5" id="comment" [(ngModel)]="patternContent"></textarea>
+      
+      <button type="button" class="btn btn-default" (click)="savePattern()">save</button>
     </div>
-    <button type="button" class="btn btn-default" (click)="savePattern()">save</button>
   </div>
 </div>
