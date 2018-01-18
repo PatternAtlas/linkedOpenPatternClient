@@ -26,9 +26,7 @@ export class GithubService {
   }
 
   private getUserName() {
-    console.log((this.platformLocation as any).location);
-    console.log((this.platformLocation as any).location.href);
-    const baseUrl = (this.platformLocation as any).location.href;
+    const baseUrl =  (this.platformLocation as any).location.href;
     console.log(baseUrl);
     const userNameReg = /\https:\/\/+(.*)(?=.github.io)/g;
     const username = userNameReg.exec(baseUrl);
@@ -36,10 +34,10 @@ export class GithubService {
   }
 
   private getRepoName() {
-    const baseUrl = (this.platformLocation as any).location.href;
+    const baseUrl =  (this.platformLocation as any).location.href;
     const repoReg = /\github.io\/+(.*)(?=\/)/g;
     const repoName = repoReg.exec(baseUrl);
-    return repoName[1];
+    return repoName[1].substring(0, repoName[1].indexOf('/'));
   }
 
 }
