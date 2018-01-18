@@ -15,7 +15,9 @@ export class GithubService {
       'content': btoa(content)
     };
     const auth =  { Authorization: `Token ${authToken}`};
-    return this.http.put(`https://api.github.com/repos/ckrieger/githubApiTests/contents/patterns/${patternName}.html`,
+    const userName = this.getUserName();
+    const repoName = this.getRepoName();
+    return this.http.put(`https://api.github.com/repos/${userName}/${repoName}/contents/patterns/${patternName}.html`,
     body, {headers: auth });
   }
 
@@ -23,23 +25,19 @@ export class GithubService {
     return this.http.get('https://api.github.com/repos/ckrieger/githubApiTests/contents/patterns/pattern1.md');
   }
 
-  getBaseUrl() {
-    let testUrl = 'https://ckrieger.github.io/pattern-solution-repository/';
-    console.log(this.getUserName(testUrl));
-    this.getRepository(testUrl);
-    console.log((this.platformLocation as any).location.origin);
-  }
-
-  getUserName(url: string) {
+  private getUserName() {
+    const baseUrl = (this.platformLocation as any).location.origin;
+    console.log(baseUrl);
     const userNameReg = /\https:\/\/+(.*)(?=.github.io)/g;
-    const username = userNameReg.exec(url);
+    const username = userNameReg.exec(baseUrl);
     return username[1];
   }
 
-  getRepository(url: string) {
+  private getRepoName() {
+    const baseUrl = (this.platformLocation as any).location.origin;
     const repoReg = /\github.io\/+(.*)(?=\/)/g;
-    const repoName = repoReg.exec(url);
-    console.log(repoName[1]);
+    const repoName = repoReg.exec(baseUrl);
+    return repoName[1];
   }
 
 }

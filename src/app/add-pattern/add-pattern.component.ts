@@ -27,7 +27,4 @@ export class AddPatternComponent implements OnInit {
       }, err => this.toastr.error('Something went wrong!', 'Error!'));
   }
 
-  getBaseUrl() {
-    this.githubService.getBaseUrl();
-  }
 }
