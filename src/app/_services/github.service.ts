@@ -26,6 +26,8 @@ export class GithubService {
   }
 
   private getUserName() {
+    console.log((this.platformLocation as any).location);
+    console.log((this.platformLocation as any).location.href);
     const baseUrl = (this.platformLocation as any).location.origin;
     console.log(baseUrl);
     const userNameReg = /\https:\/\/+(.*)(?=.github.io)/g;
