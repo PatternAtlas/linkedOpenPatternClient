@@ -1,43 +1,49 @@
-import {RequestOptions} from '@angular/http';
+import { RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {PlatformLocation } from '@angular/common';
+import { PlatformLocation } from '@angular/common';
 
 @Injectable()
 export class GithubService {
 
+  private ghBaseUrl = 'https://api.github.com';
+  private repoName: string;
+  private userName: string;
 
-  constructor(private http: HttpClient, private platformLocation: PlatformLocation) { }
+  constructor(private http: HttpClient, private platformLocation: PlatformLocation) {
+    this.userName = this.getUserName();
+    this.repoName = this.getRepoName();
+  }
 
   addPattern(patternName: string, content: string, authToken: string) {
     const body = {
       'message': `added ${patternName}`,
-      'content': btoa(content)
+      'content': btoa(content),
+      'branch': 'gh-pages'
     };
-    const auth =  { Authorization: `Token ${authToken}`};
-    const userName = this.getUserName();
-    const repoName = this.getRepoName();
-    return this.http.put(`https://api.github.com/repos/${userName}/${repoName}/contents/patterns/${patternName}.html`,
-    body, {headers: auth });
+    const auth = { Authorization: `Token ${authToken}` };
+    return this.http.put(`${this.ghBaseUrl}/repos/${this.userName}/${this.repoName}/contents/patterns/${patternName}.html`,
+      body, { headers: auth });
   }
 
-  getPattern() {
-    return this.http.get('https://api.github.com/repos/ckrieger/githubApiTests/contents/patterns/pattern1.md');
+  getPattern(fileName: string) {
+    return this.http.get(`${this.ghBaseUrl}/repos/${this.userName}/${this.repoName}/contents/patterns/${fileName}.html?ref=gh-pages`);
   }
 
-  private getUserName() {
-    const baseUrl =  (this.platformLocation as any).location.href;
-    console.log(baseUrl);
+  private getUserName(): string {
+    // const baseUrl =  (this.platformLocation as any).location.href;
+    const locationHref = 'https://patternpedia.github.io/linkedOpenPatternClient/add';
     const userNameReg = /\https:\/\/+(.*)(?=.github.io)/g;
-    const username = userNameReg.exec(baseUrl);
+    const username = userNameReg.exec(locationHref);
     return username[1];
   }
 
-  private getRepoName() {
-    const baseUrl =  (this.platformLocation as any).location.href;
+  private getRepoName(): string {
+    // const baseUrl =  (this.platformLocation as any).location.href;
+    const locationHref = 'https://patternpedia.github.io/linkedOpenPatternClient/add';
     const repoReg = /\github.io\/+(.*)(?=\/)/g;
-    const repoName = repoReg.exec(baseUrl);
-    return repoName[1].substring(0, repoName[1].indexOf('/'));
+    const repoName = repoReg.exec(locationHref);
+    return repoName[1];
   }
 
 }
