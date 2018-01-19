@@ -8,12 +8,12 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class AddPatternComponent implements OnInit {
 
-  patternContent = '';
+  patternContent = '---\n layout: default\n---';
   patternName = '';
   token = '';
   constructor(private githubService: GithubService, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
-   }
+  }
 
   ngOnInit() {
   }
