@@ -5,3 +5,4 @@ interface NodeModule {
 }
 
 declare var GreenTurtle: any;
+declare var d3:any;

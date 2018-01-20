@@ -13,6 +13,7 @@ import { AddPatternComponent } from './add-pattern/add-pattern.component';
 import { GithubService } from './_services/github.service';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RdfGraphComponent } from './rdf-graph/rdf-graph.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    AddPatternComponent
+    AddPatternComponent,
+    RdfGraphComponent
   ],
   imports: [
     AppRoutingModule,

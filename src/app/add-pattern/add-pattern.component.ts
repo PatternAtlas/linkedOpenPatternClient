@@ -12,7 +12,7 @@ export class AddPatternComponent implements OnInit {
   patternContent = '---\n layout: default\n---';
   patternName = '';
   token = '';
-
+  graphData;
   bnodeNames = {};
   bnodeCount;
   embedded = {};
@@ -56,9 +56,9 @@ export class AddPatternComponent implements OnInit {
   // }
 
   greenTurtle() {
-    const preview = document.getElementById('preview').ownerDocument;
+    const preview: any = document.getElementById('preview').ownerDocument;
     GreenTurtle.attach(preview);
-    console.log(this.toD3TreeGraph(preview.data));
+    this.graphData = this.toD3TreeGraph(preview.data);
   }
 
   getIriShortName(iri, hashify?) {
