@@ -10,8 +10,11 @@
 
   <div class="row">
     <div class="form-group col-lg-5 col-md-5">
-      <label for="patternName">Name:</label>
-      <input class="form-control" id="patternName" [(ngModel)]="patternName">
+        <label for="patternName">Name:</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="patternName" [(ngModel)]="patternName">
+            <span class="input-group-addon">.html</span>
+        </div>
     </div>
   </div>
 

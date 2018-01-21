@@ -15,6 +15,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RdfGraphComponent } from './rdf-graph/rdf-graph.component';
 import { SafeHtmlPipe } from './_pipes/safe-html.pipe';
+import { RdfaService } from './_services/rdfa.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { SafeHtmlPipe } from './_pipes/safe-html.pipe';
     FormsModule,
     ToastModule.forRoot()
   ],
-  providers: [SparqlService, GithubService],
+  providers: [SparqlService, GithubService, RdfaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
