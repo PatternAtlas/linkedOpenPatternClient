@@ -21,6 +21,7 @@ export class AddPatternComponent implements OnInit {
   RDF_TYPED_LITERAL = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#TypedLiteral';
   RDF_XML_LITERAL = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral';
   RDF_OBJECT = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#object';
+  graphTimeout;
   constructor(private githubService: GithubService, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -37,28 +38,13 @@ export class AddPatternComponent implements OnInit {
       }, err => this.toastr.error('Something went wrong!', 'Error!'));
   }
 
-  // greenTurtleIframe() {
-  //   const previewFrame: HTMLIFrameElement = document.getElementById('preview');
-  //   const preview =  previewFrame.contentDocument || previewFrame.contentWindow.document;
-  //   preview.open();
-  //   preview.write(this.patternContent);
-  //   preview.close();
-
-  //   if(!preview.data)
-  //   {
-  //      GreenTurtle.attach(direct);
-  //   }
-  //   else
-  //   {
-  //      GreenTurtle.attach(preview, true);
-  //   }
-  //   console.log(direct.data);
-  // }
-
-  greenTurtle() {
-    const preview: any = document.getElementById('preview').ownerDocument;
-    GreenTurtle.attach(preview);
-    this.graphData = this.toD3TreeGraph(preview.data);
+  getGraphData() {
+    clearTimeout(this.graphTimeout);
+    this.graphTimeout = setTimeout(() => {
+      const preview: any = document.getElementById('preview').ownerDocument;
+      GreenTurtle.attach(preview);
+      this.graphData = this.toD3TreeGraph(preview.data);
+    }, 1000);
   }
 
   getIriShortName(iri, hashify?) {
