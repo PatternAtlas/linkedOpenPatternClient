@@ -14,6 +14,7 @@ import { GithubService } from './_services/github.service';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RdfGraphComponent } from './rdf-graph/rdf-graph.component';
+import { SafeHtmlPipe } from './_pipes/safe-html.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RdfGraphComponent } from './rdf-graph/rdf-graph.component';
     HomeComponent,
     PageNotFoundComponent,
     AddPatternComponent,
-    RdfGraphComponent
+    RdfGraphComponent,
+    SafeHtmlPipe
   ],
   imports: [
     AppRoutingModule,

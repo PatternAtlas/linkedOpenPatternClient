@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-rdf-graph',
@@ -20,10 +20,9 @@ export class RdfGraphComponent implements OnChanges {
   diagonal = d3.svg.diagonal()
   .projection(function (d) { return [d.y, d.x]; });
   view;
-  constructor() { }
+  constructor(private elementRef: ElementRef) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes.data.currentValue);
     this.redraw(this.data);
   }
 
@@ -32,8 +31,7 @@ export class RdfGraphComponent implements OnChanges {
    */
   redraw(nodes) {
     // delete any old SVG document
-    // $('#graph').empty();
-
+    d3.select('svg').remove();
     // create a new tree layout
     this.tree = d3.layout.tree()
       .size([this.h, this.w])
