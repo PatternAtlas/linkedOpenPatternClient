@@ -38,11 +38,9 @@ export class RdfaService {
 
   nodelistToXMLLiteral(nodelist) {
     let str = '';
-    // tslint:disable-next-line:curly
-    for (let i = 0; i < nodelist.length; i++) {
-      const n = nodelist[i];
-      str += n.outerHTML || n.nodeValue;
-    }
+    nodelist.forEach(node => {
+      str += node.outerHTML || node.nodeValue;
+    });
     return str;
   }
 
@@ -85,11 +83,9 @@ export class RdfaService {
       }
 
       const objects = triples.predicates[p].objects;
-      // tslint:disable-next-line:forin
-      for (const oi in objects) {
-        const value = '';
-        const o = objects[oi];
 
+      objects.forEach(o => {
+        const value = '';
         if (o.type === this.RDF_OBJECT && ancestors.indexOf(o.value) === -1) {
           // recurse to create a node for the object if it's an object
           // and is not referring to itself
@@ -115,7 +111,7 @@ export class RdfaService {
           };
           node.children.push(child);
         }
-      }
+      });
     }
 
     // remove the children property if there are no children
@@ -145,33 +141,26 @@ export class RdfaService {
 
 
     // Pre-generate names for all bnodes in the graph
-    // tslint:disable-next-line:forin
-    for (const si in subjects) {
-      const s = subjects[si];
-
+    subjects.forEach(s => {
       // calculate the short name of the node
       if (s.charAt(0) === '_' && !(s in this.bnodeNames)) {
         this.bnodeNames[s] = this.bnodeCount;
         this.bnodeCount += 1;
       }
-    }
+    });
 
     // Generate the D3 tree graph
-    // tslint:disable-next-line:forin
-    for (const si in subjects) {
-      const s = subjects[si];
+    subjects.forEach(s => {
       this.createNode(s, undefined, data, rval, null);
-    }
+    });
 
     // clean up any top-level children with no data
     const cleaned = [];
-    // tslint:disable-next-line:forin
-    for (const c in rval.children) {
-      const child = rval.children[c];
+    rval.children.forEach(child => {
       if (child.children !== undefined) {
         cleaned.push(child);
       }
-    }
+    });
     rval.children = cleaned;
 
     return rval;
