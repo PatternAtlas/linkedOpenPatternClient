@@ -1,0 +1,29 @@
+
+<div class="modal-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Select a property</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-group">
+              <label>Select Property:</label>
+              <select class="form-control" [(ngModel)]="selectedProperty">
+                <option *ngFor="let p of properties" [ngValue]="p">{{p.label}}</option>
+              </select>
+              <div class="form-group">
+                <label>Value</label>
+                <input type="text" class="form-control" [(ngModel)]="value">
+              </div>
+              <p *ngIf="selectedProperty">Range: {{selectedProperty?.range[0]}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="close()">Add</button>
+      </div>
+</div>
