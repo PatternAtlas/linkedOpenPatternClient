@@ -1,9 +1,11 @@
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import {NgModule} from '@angular/core';
-import {HomeComponent} from './home/home.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {AddPatternComponent} from './add-pattern/add-pattern.component';
+import { NgModule } from '@angular/core';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AddPatternComponent } from './add-pattern/add-pattern.component';
+import { InstanceCreatorComponent } from './instance-creator/instance-creator.component';
+import { ClassesOverviewComponent } from './classes-overview/classes-overview.component';
 
 const appRoutes: Routes = [
   {
@@ -14,7 +16,16 @@ const appRoutes: Routes = [
   {
     path: 'add',
     component: AddPatternComponent,
-    data: {title: 'Add Pattern'}
+    data: { title: 'Add Pattern' }
+  },
+  {
+    path: 'addInstance',
+    component: ClassesOverviewComponent,
+    data: { title: 'Add Foaf' }
+  },
+  {
+    path: 'addInstance/:label',
+    component: InstanceCreatorComponent
   },
   {
     path: '',
@@ -28,4 +39,4 @@ const appRoutes: Routes = [
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

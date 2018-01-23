@@ -16,6 +16,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RdfGraphComponent } from './rdf-graph/rdf-graph.component';
 import { SafeHtmlPipe } from './_pipes/safe-html.pipe';
 import { RdfaService } from './_services/rdfa.service';
+import { InstanceCreatorComponent } from './instance-creator/instance-creator.component';
+import { ClassesOverviewComponent } from './classes-overview/classes-overview.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { RdfaService } from './_services/rdfa.service';
     PageNotFoundComponent,
     AddPatternComponent,
     RdfGraphComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    InstanceCreatorComponent,
+    ClassesOverviewComponent
   ],
   imports: [
     AppRoutingModule,

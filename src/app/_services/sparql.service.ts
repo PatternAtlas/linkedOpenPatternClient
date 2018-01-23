@@ -10,4 +10,8 @@ export class SparqlService {
     return this.http.post('http://localhost:8080/api/executeQuery', query);
   }
 
+  getVocab(uri: String) {
+    return this.http.post('http://localhost:8080/api/getClasses', uri);
+  }
+
 }
