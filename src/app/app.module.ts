@@ -20,6 +20,7 @@ import { InstanceCreatorComponent } from './instance-creator/instance-creator.co
 import { ClassesOverviewComponent } from './classes-overview/classes-overview.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAddPropertyComponent } from './modal-add-property/modal-add-property.component';
+import { JOwlService } from './_services/j-owl.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { ModalAddPropertyComponent } from './modal-add-property/modal-add-proper
     ToastModule.forRoot(),
     NgbModule.forRoot()
   ],
-  providers: [SparqlService, GithubService, RdfaService],
+  providers: [SparqlService, GithubService, RdfaService, JOwlService],
   entryComponents: [
     ModalAddPropertyComponent
   ],

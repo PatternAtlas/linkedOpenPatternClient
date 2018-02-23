@@ -25,7 +25,8 @@
       ],
       "scripts": [
         "libs/RDFa.min.1.1.0.js",
-        "libs/d3.v2.min.js"
+        "libs/d3.v2.min.js",
+        "libs/jOWL.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
