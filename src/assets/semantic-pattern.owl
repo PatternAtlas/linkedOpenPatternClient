@@ -156,6 +156,33 @@
     <owl:Class rdf:about="http://semanticweb.org/ontologies/semantic-pattern.owl#SeeAlsoRelationship">
         <rdfs:subClassOf rdf:resource="http://semanticweb.org/ontologies/semantic-pattern.owl#Relationship"/>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://semanticweb.org/ontologies/semantic-pattern.owl#StaticWorkload -->
+
+    <owl:NamedIndividual rdf:about="http://semanticweb.org/ontologies/semantic-pattern.owl#StaticWorkload">
+        <rdf:type rdf:resource="http://semanticweb.org/ontologies/semantic-pattern.owl#Pattern"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semanticweb.org/ontologies/semantic-pattern.owl#seeAlso -->
+
+    <owl:NamedIndividual rdf:about="http://semanticweb.org/ontologies/semantic-pattern.owl#seeAlso">
+        <rdf:type rdf:resource="http://semanticweb.org/ontologies/semantic-pattern.owl#SeeAlsoRelationship"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
