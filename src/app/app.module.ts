@@ -21,6 +21,10 @@ import { ClassesOverviewComponent } from './classes-overview/classes-overview.co
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAddPropertyComponent } from './modal-add-property/modal-add-property.component';
 import { JOwlService } from './_services/j-owl.service';
+import { OntologyBrowserComponent } from './ontology-browser/ontology-browser.component';
+import { PropertiesOverviewComponent } from './ontology-browser/properties-overview/properties-overview.component';
+import { IndividualsOverviewComponent } from './ontology-browser/individuals-overview/individuals-overview.component';
+import { BrowserClassesOverviewComponent } from './ontology-browser/browser-classes-overview/browser-classes-overview.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { JOwlService } from './_services/j-owl.service';
     SafeHtmlPipe,
     InstanceCreatorComponent,
     ClassesOverviewComponent,
-    ModalAddPropertyComponent
+    ModalAddPropertyComponent,
+    OntologyBrowserComponent,
+    PropertiesOverviewComponent,
+    IndividualsOverviewComponent,
+    BrowserClassesOverviewComponent
   ],
   imports: [
     AppRoutingModule,

@@ -26,10 +26,11 @@ export class ClassesOverviewComponent implements OnInit {
 
   getClassesOfVocabulary() {
     const options = { locale: 'en' };
-    jOWL.load('assets/semantic-pattern.owl', () => {
+    jOWL.load('assets/wine.rdf', () => {
       new jOWL.SPARQL_DL('Class(?x)').execute({
         onComplete: results => {
           this.classesOfVocab = results.jOWLArray('?x').items;
+          console.log(this.classesOfVocab);
         }
       });
     }, options);
