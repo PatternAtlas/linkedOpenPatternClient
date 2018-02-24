@@ -14,20 +14,24 @@ export class ClassesOverviewComponent implements OnInit {
   constructor(private sparqlService: SparqlService, private router: Router, private jOWLService: JOwlService) { }
 
   ngOnInit() {
-    this.jOWL();
-    this.sparqlService.getVocab('https://ckrieger.github.io/linkedOpenPatternClient/foaf.rdf')
-      .subscribe(succ => this.classesOfVocab = succ, err => console.log(err));
+    this.jOWLService.getClasses();
+    this.getClassesOfVocabulary();
+   // this.sparqlService.getVocab('https://ckrieger.github.io/linkedOpenPatternClient/foaf.rdf')
+     // .subscribe(succ => this.classesOfVocab = succ, err => console.log(err));
   }
 
   goToInstanceCreator(label: string) {
     this.router.navigate(['/addInstance', label]);
   }
 
-  jOWL() {
+  getClassesOfVocabulary() {
     const options = { locale: 'en' };
-    jOWL.load('assets/cloud-computing-patterns.owl', () => {
-      console.log(this.jOWLService.getClasses());
-      this.jOWLService.getPropertyValues();
+    jOWL.load('assets/semantic-pattern.owl', () => {
+      new jOWL.SPARQL_DL('Class(?x)').execute({
+        onComplete: results => {
+          this.classesOfVocab = results.jOWLArray('?x').items;
+        }
+      });
     }, options);
   }
 

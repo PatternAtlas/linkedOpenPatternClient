@@ -1,24 +1,20 @@
 <div class="container-fluid">
-    <h3>{{selectedClass?.label}}</h3>
+    <h3>Create Instance of {{selectedClass?.name}}</h3>
 
 
-    <div class="row" *ngFor="let property of instance.properties">
+    <div class="row" *ngFor="let property of instance.dataTypeProperties">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{property.property.label}}</h3>
+                <div class="form-group">
+                        <label>{{property.name}}</label>
+                        <textarea class="form-control" rows="5" id="comment" [(ngModel)]="property.value"></textarea>
                 </div>
-                <div class="panel-body">
-                    {{property.value}}
-                </div>
-            </div>
         </div>
 
-        <div class="col-lg-1">
+        <!-- <div class="col-lg-1">
             <button type="button" class="close" aria-label="Close" (click)="deleteProperty(property)">
                 <span aria-hidden="true">&times;</span>
             </button>
-        </div>
+        </div> -->
    </div>
 
    
@@ -31,6 +27,6 @@
 
 
 
-    <button type="button" class="btn btn-default" (click)="openModal(selectedClass?.dataTypeProperties)">add DataTypeProperty</button>
+    <button type="button" class="btn btn-default" (click)="openModal()">add ObjectProperty</button>
     <button type="button" class="btn btn-default" (click)="saveInstance()">save</button>
 </div>

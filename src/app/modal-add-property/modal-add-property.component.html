@@ -12,13 +12,10 @@
             <div class="form-group">
               <label>Select Property:</label>
               <select class="form-control" [(ngModel)]="selectedProperty">
-                <option *ngFor="let p of properties" [ngValue]="p">{{p.label}}</option>
+                <option *ngFor="let p of properties" [ngValue]="p">{{p.name}}</option>
               </select>
-              <div class="form-group">
-                <label>Value</label>
-                <input type="text" class="form-control" [(ngModel)]="value">
-              </div>
-              <p *ngIf="selectedProperty">Range: {{selectedProperty?.range[0]}}</p>
+              
+              <p *ngIf="selectedProperty">Range: {{selectedProperty?.range}}</p>
             </div>
           </div>
         </div>
