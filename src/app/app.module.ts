@@ -1,3 +1,4 @@
+import {TreeModule} from 'angular-tree-component/dist/angular-tree-component';
 import { NgModule } from '@angular/core';
 
 
@@ -48,6 +49,7 @@ import { BrowserClassesOverviewComponent } from './ontology-browser/browser-clas
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    TreeModule,
     ToastModule.forRoot(),
     NgbModule.forRoot()
   ],

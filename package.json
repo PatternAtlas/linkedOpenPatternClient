@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ghpages" : "ng build --prod --base-href '/linkedOpenPatternClient/' && angular-cli-ghpages"
+    "ghpages": "ng build --prod --base-href '/linkedOpenPatternClient/' && angular-cli-ghpages"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.9",
+    "angular-tree-component": "^7.0.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "ng2-toastr": "^4.1.2",
