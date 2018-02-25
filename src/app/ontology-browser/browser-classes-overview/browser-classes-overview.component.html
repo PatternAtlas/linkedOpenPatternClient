@@ -4,19 +4,48 @@
             <div class="panel panel-default">
                 <div class="panel-heading">TreeView</div>
                 <div class="panel-body">
-                    <tree-root [nodes]="nodes" [options]="options"></tree-root>
+                    <tree-root #tree [nodes]="nodes" [options]="options" (activate)="nodeClickEvent($event.node.data.jowlNode)"></tree-root>
                 </div>
-              </div>
+            </div>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Description of </div>
+                <div class="panel-heading">Description of {{selectedNode?.label}}</div>
                 <div class="panel-body">
-                    
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 description-label">
+                            Terms:
+                        </div>
+                        <div class="col-lg-10">
+                            {{selectedNode.terms}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 description-label">
+                            Disjoint With:
+                        </div>
+                        <ul class="col-lg-10">
+                            <li *ngFor="let disjoint of selectedNode.disjointWith">{{disjoint.name}}: {{disjoint.range}}</li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 description-label">
+                            Relations:
+                        </div>
+                        <ul class="col-lg-10">
+                            <li *ngFor="let relation of selectedNode.relations">{{relation.name}}: {{relation.range}}</li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 description-label">
+                            Instances:
+                        </div>
+                        <ul class="col-lg-10">
+                            <li *ngFor="let instance of selectedNode.instances">{{instance.name}}</li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>
-
-
