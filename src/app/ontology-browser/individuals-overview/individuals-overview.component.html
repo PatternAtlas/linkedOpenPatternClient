@@ -1,3 +1,38 @@
-<p>
-  individuals-overview works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Individuals</div>
+        <div class="panel-body">
+          <ul>
+            <li *ngFor="let individual of individuals" (click)="onIndividualSelected(individual)"><a class="individual">{{individual.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="panel panel-default" *ngIf="selectedIndividual; else selectIndivdual">
+        <div class="panel-heading">Description of {{selectedIndividual?.name}}</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-2 description-label">
+                  owl:Class:
+                </div>
+                <div class="col-lg-10">
+                  {{selectedIndividual?.Class}}
+                </div>
+              </div>
+          <div class="row">
+            <div class="col-lg-2 description-label">
+              Property Values:
+            </div>
+            <ul class="col-lg-10">
+                <li *ngFor="let property of selectedIndividual?.propertyValues">{{property["?p"].name}}: {{property["?t"].name}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <ng-template #selectIndivdual>Please select an Individual.</ng-template>
+    </div>
+  </div>
+</div>
