@@ -9,7 +9,8 @@
             </div>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <div class="panel panel-default">
+            <ng-template #selectClass>Please select a Class.</ng-template>
+            <div class="panel panel-default" *ngIf="selectedNode.label; else selectClass">
                 <div class="panel-heading">Description of {{selectedNode?.label}}</div>
                 <div class="panel-body">
                     <div class="row">

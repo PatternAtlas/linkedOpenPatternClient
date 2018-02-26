@@ -1,3 +1,36 @@
-<p>
-  properties-overview works!
-</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">TreeView</div>
+                <div class="panel-body">
+                    <tree-root #tree [nodes]="nodes"  (activate)="nodeClickEvent($event.node)"></tree-root>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="panel panel-default" *ngIf="selectedProperty; else selectProperty">
+                <div class="panel-heading">Description of {{selectedProperty?.name}}</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 description-label">
+                            Domain:
+                        </div>
+                        <div class="col-lg-10">
+                            {{selectedProperty?.domain}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 description-label">
+                            Range:
+                        </div>
+                        <div class="col-lg-10">
+                            {{selectedProperty?.range}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #selectProperty>Please select a Property.</ng-template>
+        </div>
+    </div>
+</div>
