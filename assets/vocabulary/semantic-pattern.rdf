@@ -5,8 +5,8 @@
    ]>
 
 <rdf:RDF
-  xmlns     = "http://localhost:4200/assets/vocabulary/semantic-pattern#"
-  xml:base  = "http://localhost:4200/assets/vocabulary/semantic-pattern#"
+  xmlns     = "https://raw.githubusercontent.com/PatternPedia/linkedOpenPatternClient/gh-pages/assets/vocabulary/semantic-pattern.rdf#"
+  xml:base  = "https://raw.githubusercontent.com/PatternPedia/linkedOpenPatternClient/gh-pages/assets/vocabulary/semantic-pattern.rdf"
   xmlns:owl = "http://www.w3.org/2002/07/owl#"
   xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
