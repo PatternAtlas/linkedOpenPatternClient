@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+   ]>
+
+<rdf:RDF
+  xmlns     = "http://localhost:4200/assets/vocabulary/semantic-pattern#"
+  xml:base  = "http://localhost:4200/assets/vocabulary/semantic-pattern#"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+
+  <owl:Ontology rdf:about="">
+    <rdfs:comment> A Pattern Ontology
+    </rdfs:comment>
+    <rdfs:label>Cloud Computing Pattern Ontology</rdfs:label>
+  </owl:Ontology>
+  
+  <owl:Class rdf:ID="Pattern">
+    <rdfs:label xml:lang="en">pattern</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#isRelationshipSource"/>
+      	<owl:someValuesFrom rdf:resource="#Relationship"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#isRelationshipTarget"/>
+      	<owl:someValuesFrom rdf:resource="#Relationship"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#problem"/>
+      	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#context"/>
+      	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#solution"/>
+      	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:ID="CloudComputingPattern">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#Pattern" />
+    </owl:intersectionOf>
+  </owl:Class>
+
+  <owl:Class rdf:ID="CloudComputingFundamental">
+   <rdfs:subClassOf>
+   <owl:Class rdf:about="#CloudComputingPattern">
+          </owl:Class>
+  </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:ID="CloudOffering">
+  <rdfs:subClassOf>
+   <owl:Class rdf:about="#CloudComputingPattern">
+          </owl:Class>
+  </rdfs:subClassOf>
+  </owl:Class>
+
+
+  <owl:Class rdf:ID="CloudApplicationArchitecture">
+    <rdfs:subClassOf>
+       <owl:Class rdf:about="#CloudComputingPattern"></owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:ID="CloudApplicationManagement">
+    <rdfs:subClassOf>
+   <owl:Class rdf:about="#CloudComputingPattern">
+          </owl:Class>
+  </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:ID="CompositeCloudApplication">
+    <rdfs:subClassOf>
+   <owl:Class rdf:about="#CloudComputingPattern">
+          </owl:Class>
+  </rdfs:subClassOf>
+  </owl:Class>
+
+
+   <owl:Class rdf:ID="Relationship">
+    <rdfs:label xml:lang="en">relationship</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#hasSource"/>
+      	<owl:someValuesFrom rdf:resource="#Pattern"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#hasTarget"/>
+      	<owl:someValuesFrom rdf:resource="#Pattern"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+   <owl:Class rdf:ID="Alternative">
+    <rdfs:subClassOf>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#additionalInformation" />
+      	  <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+        </owl:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+        <owl:Class rdf:about="#Relationship"></owl:Class>
+      </rdfs:subClassOf>
+    </owl:Class>
+
+  <owl:Class rdf:ID="RefinedBy">
+    <rdfs:subClassOf>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#additionalInformation" />
+      	  <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+        </owl:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+        <owl:Class rdf:about="#Relationship"></owl:Class>
+      </rdfs:subClassOf>
+    </owl:Class>
+
+     <owl:Class rdf:ID="SeeAlso">
+    <rdfs:subClassOf>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#additionalInformation" />
+      	  <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+        </owl:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+        <owl:Class rdf:about="#Relationship"></owl:Class>
+      </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:ID="RelatedPattern">
+    <rdfs:subClassOf>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#additionalInformation" />
+      	  <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+        </owl:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+        <owl:Class rdf:about="#Relationship"></owl:Class>
+      </rdfs:subClassOf>
+    </owl:Class>
+
+  
+
+
+   <owl:ObjectProperty rdf:ID="hasSource">
+        <rdfs:domain rdf:resource="#Relationship"/>
+        <rdfs:range rdf:resource="#Pattern" />
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:ID="hasTarget">
+        <rdfs:domain rdf:resource="#Relationship"/>
+        <rdfs:range rdf:resource="#Pattern" />
+    </owl:ObjectProperty>
+    
+
+      <owl:ObjectProperty rdf:ID="isRelationshipSource">
+        <rdfs:domain rdf:resource="#Pattern"/>
+        <rdfs:range rdf:resource="#Relationship" />
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:ID="isRelationshipTarget">
+        <rdfs:domain rdf:resource="#Pattern"/>
+        <rdfs:range rdf:resource="#Relationship" />
+    </owl:ObjectProperty>
+
+    <owl:DatatypeProperty rdf:ID="problem">
+      <rdfs:domain rdf:resource="#Pattern" />    
+      <rdfs:range  rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:ID="context">
+      <rdfs:domain rdf:resource="#Pattern" />    
+      <rdfs:range  rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:ID="solution">
+      <rdfs:domain rdf:resource="#Pattern" />    
+      <rdfs:range  rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:ID="additionalInformation">
+      <rdfs:domain rdf:resource="#Relationship" />    
+      <rdfs:range  rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+    </owl:DatatypeProperty>
+
+
+
+    <!-- Individuals -->
+
+  <CloudComputingFundamental rdf:ID="StaticWorkload">
+    <problem>How can an equal utilization be characterized and how can applications experiencing this workload benefit from cloud computing?</problem>
+    <context>Static Workloads are characterized by a more-or-less flat utilization profile over time within certain boundaries.</context>
+    <solution>An application experiencing Static Workload is less likely to benefit from an elastic cloud that offers a pay-per-use billing, because the number of required resources is constant</solution>
+    <isRelationshipSource rdf:resource="StaticWorkloadToPublicCloud"></isRelationshipSource>
+  </CloudComputingFundamental>
+
+  <CloudComputingFundamental rdf:ID="PublicCloud">
+    <problem>How can the cloud properties – on demand self-service, broad network access, pay-per-use, resource pooling, and rapid elasticity – be provided to a large customer group?</problem>
+    <context>A provider offering IT resources according to IaaS, PaaS, or SaaS has to maintain physical data centers. IT resources, nevertheless, shall be made accessible dynamically.</context>
+    <solution>The hosting environment is shared between many customers possibly reducing the costs for an individual customer. Leveraging economies of scale enables a dynamic use of resources, because workload peaks of some customers occur during times of low workload of other customers.</solution>
+  </CloudComputingFundamental>
+
+  <RelatedPattern rdf:ID="StaticWorkloadToPublicCloud">
+    <additionalInformation>Here is some additional Information about this relationship</additionalInformation>
+    <hasSource rdf:resource="#StaticWorkload"></hasSource>
+    <hasTarget rdf:resource="#PublicCloud"></hasTarget>
+  </RelatedPattern>
+
+ 
+
+  
+  
+
+</rdf:RDF>
