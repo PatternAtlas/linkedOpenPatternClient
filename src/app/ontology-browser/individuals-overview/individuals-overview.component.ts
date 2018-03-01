@@ -16,7 +16,7 @@ export class IndividualsOverviewComponent implements OnInit {
   }
 
   getIndividuals() {
-    jOWL.load('assets/wine.rdf', () => {
+    jOWL.load('assets/vocabulary/semantic-pattern.rdf', () => {
       const arr = new jOWL.Ontology.Array();
       // tslint:disable-next-line:forin
       for (const key in jOWL.index('Thing')) {
@@ -28,12 +28,28 @@ export class IndividualsOverviewComponent implements OnInit {
   }
 
   onIndividualSelected(individual) {
-    new jOWL.SPARQL_DL(`PropertyValue(${individual.label()}, ?p, ?t)`).execute({
+   console.log(individual)
+    new jOWL.SPARQL_DL(`PropertyValue(${individual.URI}, ?p, ?t)`).execute({
       onComplete: (result) => {
+        const objectProperties = [];
+        const dataTypeProperties = [];
         this.selectedIndividual = individual;
-        this.selectedIndividual.propertyValues = result.results;
+        result.results.forEach(p => {
+          if (p['?p'].type === 'owl:DatatypeProperty') {
+            dataTypeProperties.push(p);
+          } else {
+            objectProperties.push(p);
+          }
+        });
+        this.selectedIndividual.objectProperties = objectProperties;
+        this.selectedIndividual.dataTypeProperties = dataTypeProperties;
+        console.log(this.selectedIndividual);
       }
     });
+  }
+
+  create(){
+    console.log(this.selectedIndividual);
   }
 
 }

@@ -20,7 +20,7 @@ export class PropertiesOverviewComponent implements OnInit {
   }
 
   getProperties() {
-    jOWL.load('assets/wine.rdf', () => {
+    jOWL.load('assets/vocabulary/semantic-pattern.rdf', () => {
       new jOWL.SPARQL_DL('ObjectProperty(?x)').execute({
         onComplete: (result) => {
           this.onObjectPropertiesLoaded(result.jOWLArray('?x').items);

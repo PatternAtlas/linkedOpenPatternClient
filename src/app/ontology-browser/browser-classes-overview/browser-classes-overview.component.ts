@@ -32,9 +32,10 @@ export class BrowserClassesOverviewComponent implements OnInit {
   }
 
   loadClasses() {
-    jOWL.load('assets/wine.rdf', () => {
+    jOWL.load('assets/vocabulary/semantic-pattern.rdf', () => {
       new jOWL.SPARQL_DL('Class(?x)').execute({
         onComplete: (result) => {
+          console.log(result);
           this.onJowlComplete(result);
         }
       });
@@ -47,7 +48,7 @@ export class BrowserClassesOverviewComponent implements OnInit {
     classesOfVocab.forEach(element => {
       const itemArray = element.hierarchy(true);
       itemArray.each((el) => {
-        if (el.invParents) {
+        if (true) {
           rootParents.add(el);
         }
       });
@@ -81,7 +82,7 @@ export class BrowserClassesOverviewComponent implements OnInit {
 
 
   nodeClickEvent(node) {
-    new jOWL.SPARQL_DL(`PropertyValue(${node.label()}, ?p, ?t)`).execute({
+    new jOWL.SPARQL_DL(`PropertyValue(${node.URI}, ?p, ?t)`).execute({
       onComplete: (result) => {
         this.selectedNode.label = node.label();
         this.selectedNode.terms = this.getTerms(node);

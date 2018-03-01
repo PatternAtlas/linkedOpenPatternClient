@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+     <!ENTITY pattern  "https://raw.githubusercontent.com/PatternPedia/linkedOpenPatternClient/gh-pages/assets/vocabulary/semantic-pattern.rdf#" >
+   ]>
+
+<rdf:RDF
+  xml:base  = "http://localhost:4200/linkedOpenPatternClient/assets/individuals/public-cloud.rdf#"
+  xmlns:pattern = "https://raw.githubusercontent.com/PatternPedia/linkedOpenPatternClient/gh-pages/assets/vocabulary/semantic-pattern.rdf#"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="">
+   <owl:imports rdf:resource="http://purl.obolibrary.org/obo/foodon.owl#"/>
+    <rdfs:comment>An example OWL ontology</rdfs:comment>
+    <rdfs:comment> A Pattern Ontology
+    </rdfs:comment>
+    <rdfs:label>Cloud Computing Pattern Ontology</rdfs:label>
+  </owl:Ontology>
+  
+
+
+  <pattern:CloudComputingFundamental rdf:ID="PublicCloud">
+   <owl:DatatypeProperty rdf:ID="additionalInformation">
+      <rdfs:domain rdf:resource="#Relationship" />    
+      <rdfs:range  rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+      hello
+    </owl:DatatypeProperty>
+    <pattern:problem>How can the cloud properties – on demand self-service, broad network access, pay-per-use, resource pooling, and rapid elasticity – be provided to a large customer group?</pattern:problem>
+    <pattern:context>A provider offering IT resources according to IaaS, PaaS, or SaaS has to maintain physical data centers. IT resources, nevertheless, shall be made accessible dynamically.</pattern:context>
+    <pattern:solution>The hosting environment is shared between many customers possibly reducing the costs for an individual customer. Leveraging economies of scale enables a dynamic use of resources, because workload peaks of some customers occur during times of low workload of other customers.</pattern:solution>
+  </pattern:CloudComputingFundamental>
+
+
+
+ 
+</rdf:RDF>
