@@ -207,9 +207,12 @@
     <!-- Individuals -->
 
   <CloudComputingFundamental rdf:ID="StaticWorkload">
-    <problem>How can an equal utilization be characterized and how can applications experiencing this workload benefit from cloud computing?</problem>
-    <context>Static Workloads are characterized by a more-or-less flat utilization profile over time within certain boundaries.</context>
-    <solution>An application experiencing Static Workload is less likely to benefit from an elastic cloud that offers a pay-per-use billing, because the number of required resources is constant</solution>
+    <problem>![alt text](http://www.cloudcomputingpatterns.org/icons/static_workload_icon.png "Logo Title Text 1") `How can an equal utilization be characterized and how can applications experiencing this workload benefit from cloud computing?`</problem>
+    <context>### Context
+Static Workloads are characterized by a more-or-less flat utilization profile over time within certain boundaries.</context>
+    <solution>### Solution  
+An application experiencing Static Workload is less likely to benefit from an elastic cloud that offers a pay-per-use billing, because the number of required resources is constant. 
+![solution](http://www.cloudcomputingpatterns.org/sketches/static_workload_sketch.png)</solution>
     <isRelationshipSource rdf:resource="StaticWorkloadToPublicCloud"></isRelationshipSource>
   </CloudComputingFundamental>
 

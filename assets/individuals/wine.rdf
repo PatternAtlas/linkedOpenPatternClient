@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY vin  "http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine#" >
+     <!ENTITY food "http://www.w3.org/TR/2003/PR-owl-guide-20031209/food#" >
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+   ]>
+
+<rdf:RDF
+  xmlns     = "http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine#"
+  xmlns:vin = "http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine#"
+  xml:base  = "http://www.w3.org/TR/2003/PR-owl-guide-20031209/bla#"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+
+  <owl:Ontology rdf:about="">
+    <rdfs:comment>An example OWL ontology</rdfs:comment>
+    <owl:priorVersion>
+      <owl:Ontology rdf:about="http://www.w3.org/TR/2003/CR-owl-guide-20030818/wj"/>
+    </owl:priorVersion>
+    <owl:imports rdf:resource="http://www.w3.org/TR/2003/PR-owl-guide-20031209/food"/>
+    <rdfs:comment>Derived from the DAML Wine ontology at 
+      http://ontolingua.stanford.edu/doc/chimaera/ontologies/wines.daml
+      Substantially changed, in particular the Region based relations.
+    </rdfs:comment>
+    <rdfs:label>Wine Ontology</rdfs:label>
+  </owl:Ontology>
+  
+  
+  
+  <vin:CheninBlanc rdf:ID="VentanaCheninBlanc">
+    <wine:locatedIn rdf:resource="&vin;CentralCoastRegion" />
+    <wine:hasMaker  rdf:resource="&vin;Ventana" />
+    <wine:hasSugar  rdf:resource="&vin;OffDry" />
+    <vin:hasFlavor rdf:resource="&vin;Moderate" />
+    <vin:hasBody   rdf:resource="&vin;Medium" />
+  </vin:CheninBlanc>
+  
+  
+
+</rdf:RDF>
