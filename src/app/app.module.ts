@@ -26,6 +26,7 @@ import { OntologyBrowserComponent } from './ontology-browser/ontology-browser.co
 import { PropertiesOverviewComponent } from './ontology-browser/properties-overview/properties-overview.component';
 import { IndividualsOverviewComponent } from './ontology-browser/individuals-overview/individuals-overview.component';
 import { BrowserClassesOverviewComponent } from './ontology-browser/browser-classes-overview/browser-classes-overview.component';
+import { SimplemdeModule, SIMPLEMDE_CONFIG } from 'ng2-simplemde';
 import { MarkdownModule } from 'angular2-markdown';
 
 @NgModule({
@@ -51,6 +52,11 @@ import { MarkdownModule } from 'angular2-markdown';
     HttpClientModule,
     FormsModule,
     TreeModule,
+    SimplemdeModule.forRoot({
+      provide: SIMPLEMDE_CONFIG,
+      // config options 1
+      useValue: {}
+    }),
     MarkdownModule.forRoot(),
     ToastModule.forRoot(),
     NgbModule.forRoot()

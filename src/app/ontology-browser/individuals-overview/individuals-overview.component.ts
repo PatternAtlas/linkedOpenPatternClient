@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var SimpleMDE: any;
+
 @Component({
   selector: 'app-individuals-overview',
   templateUrl: './individuals-overview.component.html',
   styleUrls: ['./individuals-overview.component.css']
 })
 export class IndividualsOverviewComponent implements OnInit {
+
+
 
   individuals = [];
   selectedIndividual;
@@ -51,6 +55,9 @@ export class IndividualsOverviewComponent implements OnInit {
   onEdit(property) {
     this.isEditMode = property['?p'].URI;
     console.log(this.isEditMode);
+  }
+  onBlurMethod() {
+    this.isEditMode = '';
   }
 
 }
