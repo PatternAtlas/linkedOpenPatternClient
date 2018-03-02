@@ -26,6 +26,7 @@ import { OntologyBrowserComponent } from './ontology-browser/ontology-browser.co
 import { PropertiesOverviewComponent } from './ontology-browser/properties-overview/properties-overview.component';
 import { IndividualsOverviewComponent } from './ontology-browser/individuals-overview/individuals-overview.component';
 import { BrowserClassesOverviewComponent } from './ontology-browser/browser-classes-overview/browser-classes-overview.component';
+import { MarkdownModule } from 'angular2-markdown';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { BrowserClassesOverviewComponent } from './ontology-browser/browser-clas
     HttpClientModule,
     FormsModule,
     TreeModule,
+    MarkdownModule.forRoot(),
     ToastModule.forRoot(),
     NgbModule.forRoot()
   ],

@@ -22,13 +22,10 @@
                   {{selectedIndividual?.Class}}
                 </div>
               </div>
-          <div class="row">
-            <div class="col-lg-2 description-label">
-              DataTypeProperties:
-            </div>
-            <ul class="col-lg-10">
-              <li *ngFor="let property of selectedIndividual?.dataTypeProperties"><div class="description-label">{{property["?p"].name}}:</div> {{property["?t"]}}</li>
-            </ul>
+          <div class="row" *ngFor="let property of selectedIndividual?.dataTypeProperties">
+            <markdown class="col-lg-12" (click)="onEdit(property)" *ngIf="isEditMode != property['?p'].URI">
+                   {{property["?t"]}}
+            </markdown>
           </div>
           <div class="row">
             <div class="col-lg-2 description-label">

@@ -9,6 +9,7 @@ export class IndividualsOverviewComponent implements OnInit {
 
   individuals = [];
   selectedIndividual;
+  isEditMode = '';
   constructor() { }
 
   ngOnInit() {
@@ -28,7 +29,6 @@ export class IndividualsOverviewComponent implements OnInit {
   }
 
   onIndividualSelected(individual) {
-   console.log(individual)
     new jOWL.SPARQL_DL(`PropertyValue(${individual.URI}, ?p, ?t)`).execute({
       onComplete: (result) => {
         const objectProperties = [];
@@ -48,8 +48,9 @@ export class IndividualsOverviewComponent implements OnInit {
     });
   }
 
-  create(){
-    console.log(this.selectedIndividual);
+  onEdit(property) {
+    this.isEditMode = property['?p'].URI;
+    console.log(this.isEditMode);
   }
 
 }
