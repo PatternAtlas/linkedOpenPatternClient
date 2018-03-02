@@ -56,8 +56,9 @@ export class IndividualsOverviewComponent implements OnInit {
     this.isEditMode = property['?p'].URI;
     console.log(this.isEditMode);
   }
-  onBlurMethod() {
+  onSaveClick() {
     this.isEditMode = '';
+    console.log(this.selectedIndividual);
   }
 
 }

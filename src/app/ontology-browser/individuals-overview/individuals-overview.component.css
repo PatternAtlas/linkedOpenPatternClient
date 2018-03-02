@@ -5,3 +5,7 @@
 .individual{
     cursor: pointer;
 }
+
+.save-button{
+    text-align: right;
+}
