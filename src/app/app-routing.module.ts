@@ -18,6 +18,11 @@ const appRoutes: Routes = [
     data: { title: 'Home' }
   },
   {
+    path: 'home/:code/:state',
+    component: HomeComponent,
+    data: { title: 'Home' }
+  },
+  {
     path: 'add',
     component: AddPatternComponent,
     data: { title: 'Add Pattern' }
