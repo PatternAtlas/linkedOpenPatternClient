@@ -29,6 +29,8 @@ import { BrowserClassesOverviewComponent } from './ontology-browser/browser-clas
 import { SimplemdeModule, SIMPLEMDE_CONFIG } from 'ng2-simplemde';
 import { MarkdownModule } from 'angular2-markdown';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './_services/user.service';
+import { AuthGuardService } from './_guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,7 @@ import { LoginComponent } from './login/login.component';
     ToastModule.forRoot(),
     NgbModule.forRoot()
   ],
-  providers: [SparqlService, GithubService, RdfaService, JOwlService],
+  providers: [SparqlService, GithubService, RdfaService, JOwlService, UserService, AuthGuardService],
   entryComponents: [
     ModalAddPropertyComponent
   ],

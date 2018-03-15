@@ -11,6 +11,8 @@ import { PropertiesOverviewComponent } from './ontology-browser/properties-overv
 import { IndividualsOverviewComponent } from './ontology-browser/individuals-overview/individuals-overview.component';
 import { BrowserClassesOverviewComponent } from './ontology-browser/browser-classes-overview/browser-classes-overview.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuardService as AuthGuard } from './_guards/auth-guard.service';
+
 
 const appRoutes: Routes = [
   {
@@ -26,10 +28,12 @@ const appRoutes: Routes = [
   {
     path: 'add',
     component: AddPatternComponent,
+    canActivate: [AuthGuard],
     data: { title: 'Add Pattern' }
   },
   {
     path: 'addInstance',
+    canActivate: [AuthGuard],
     component: ClassesOverviewComponent,
     data: { title: 'Add Foaf' }
   },
