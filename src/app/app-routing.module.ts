@@ -10,6 +10,7 @@ import { OntologyBrowserComponent } from './ontology-browser/ontology-browser.co
 import { PropertiesOverviewComponent } from './ontology-browser/properties-overview/properties-overview.component';
 import { IndividualsOverviewComponent } from './ontology-browser/individuals-overview/individuals-overview.component';
 import { BrowserClassesOverviewComponent } from './ontology-browser/browser-classes-overview/browser-classes-overview.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   {
@@ -18,9 +19,9 @@ const appRoutes: Routes = [
     data: { title: 'Home' }
   },
   {
-    path: 'home/:code/:state',
-    component: HomeComponent,
-    data: { title: 'Home' }
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login' }
   },
   {
     path: 'add',

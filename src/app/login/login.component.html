@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-offset-3 col-lg-6">
+      <form  #form="ngForm" (ngSubmit)="login(form.value)" ngNativeValidate>
+        <div class="form-group">
+          <label for="user" >User</label>
+          <input type="text" class="form-control" id="user" placeholder="User"  name="user" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="token">Token</label>
+          <input type="password" class="form-control" id="password" placeholder="Token" name="token" ngModel required>
+        </div>
+        <button type="submit" class="btn btn-primary">login</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -28,6 +28,7 @@ import { IndividualsOverviewComponent } from './ontology-browser/individuals-ove
 import { BrowserClassesOverviewComponent } from './ontology-browser/browser-classes-overview/browser-classes-overview.component';
 import { SimplemdeModule, SIMPLEMDE_CONFIG } from 'ng2-simplemde';
 import { MarkdownModule } from 'angular2-markdown';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MarkdownModule } from 'angular2-markdown';
     OntologyBrowserComponent,
     PropertiesOverviewComponent,
     IndividualsOverviewComponent,
-    BrowserClassesOverviewComponent
+    BrowserClassesOverviewComponent,
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,
