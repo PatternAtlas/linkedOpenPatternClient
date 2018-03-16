@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TreeComponent, TreeNode } from 'angular-tree-component';
+import { Router } from '@angular/router';
+import { DataSharingService } from '../../_services/data-sharing.service';
 
 @Component({
   selector: 'app-browser-classes-overview',
@@ -8,24 +10,33 @@ import { TreeComponent, TreeNode } from 'angular-tree-component';
 })
 export class BrowserClassesOverviewComponent implements OnInit {
 
+  isEditMode = '';
   nodes = [];
   selectedNode = {
     label: '',
     terms: '',
-    relations: [],
+    objectProperties: [],
+    dataTypeProperties: [],
     disjointWith: [],
     instances: []
+  };
+
+  instance = {
+    label: '',
+    objectProperties: [],
+    dataTypeProperties: [],
   };
   options = {
     getChildren: (node: TreeNode) => {
       return this.getChildren(node.data);
     }
   };
+  isCreateInstanceMode = false;
 
   @ViewChild(TreeComponent)
   private tree: TreeComponent;
 
-  constructor() { }
+  constructor(private router: Router, private dataSharingService: DataSharingService) { }
 
   ngOnInit() {
     this.loadClasses();
@@ -35,7 +46,6 @@ export class BrowserClassesOverviewComponent implements OnInit {
     jOWL.load('assets/vocabulary/semantic-pattern.rdf', () => {
       new jOWL.SPARQL_DL('Class(?x)').execute({
         onComplete: (result) => {
-          console.log(result);
           this.onJowlComplete(result);
         }
       });
@@ -82,15 +92,11 @@ export class BrowserClassesOverviewComponent implements OnInit {
 
 
   nodeClickEvent(node) {
-    new jOWL.SPARQL_DL(`PropertyValue(${node.URI}, ?p, ?t)`).execute({
-      onComplete: (result) => {
-        this.selectedNode.label = node.label();
-        this.selectedNode.terms = this.getTerms(node);
-        this.selectedNode.relations = result.jOWLArray('?p', '?t').items;
-        this.selectedNode.disjointWith = this.getDisjointWith(node);
-        this.getInstanceOfClass(node);
-      }
-    });
+    this.selectedNode.label = node.label();
+    this.selectedNode.terms = this.getTerms(node);
+    this.selectedNode.disjointWith = this.getDisjointWith(node);
+    this.getInstanceOfClass(node);
+    this.getProperties(node);
   }
 
   getTerms(node) {
@@ -117,6 +123,44 @@ export class BrowserClassesOverviewComponent implements OnInit {
         this.selectedNode.instances = result.jOWLArray('?i').items;
       }
     });
+  }
+
+  getProperties(owlClass) {
+    const objectProperties = [];
+    const dataTypeProperties = [];
+    new jOWL.SPARQL_DL(`PropertyValue(${owlClass.URI}, ?p, ?t)`).execute({
+      onComplete: (properties) => {
+        properties.results.forEach(p => {
+          if (p['?p'].type === 'owl:DatatypeProperty') {
+            dataTypeProperties.push(p);
+          } else {
+            objectProperties.push(p);
+          }
+        });
+      }
+    });
+    this.selectedNode.dataTypeProperties = dataTypeProperties;
+    this.selectedNode.objectProperties = objectProperties;
+  }
+
+  onCreateInstance() {
+    this.isCreateInstanceMode = true;
+    this.preFillInstance();
+  }
+
+  preFillInstance () {
+    this.instance.dataTypeProperties = [];
+    this.instance.label = this.selectedNode.label;
+    this.instance.objectProperties = this.selectedNode.objectProperties;
+    this.selectedNode.dataTypeProperties.forEach(p => {
+      p.content = `### ${p['?p'].name}`;
+      this.instance.dataTypeProperties.push(p);
+    });
+    console.log(this.instance);
+  }
+
+  onSaveClick() {
+    console.log(this.instance);
   }
 
 }

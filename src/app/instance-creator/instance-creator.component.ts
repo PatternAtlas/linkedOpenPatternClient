@@ -4,6 +4,7 @@ import { SparqlService } from '../_services/sparql.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAddPropertyComponent } from '../modal-add-property/modal-add-property.component';
 import { JOwlService } from '../_services/j-owl.service';
+import { DataSharingService } from '../_services/data-sharing.service';
 @Component({
   selector: 'app-instance-creator',
   templateUrl: './instance-creator.component.html',
@@ -21,24 +22,11 @@ export class InstanceCreatorComponent implements OnInit {
     dataTypeProperties: []
   };
   constructor(private sparqlService: SparqlService, private route: ActivatedRoute, private modalService: NgbModal,
-    private jowlService: JOwlService) { }
+     private dataSharingService: DataSharingService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const label = params['label'];
-      this.selectedClass = this.jowlService.getClassByName(label);
-      console.log(this.selectedClass);
-      this.instance.label = this.selectedClass.name;
-      this.instance.uri = this.selectedClass.URI;
-      this.instance.dataTypeProperties = this.selectedClass.dataTypeProperties;
-      console.log(this.instance);
-      // this.sparqlService.getVocab(this.vocabUri)
-      //   .subscribe(succ => {
-      //     const classesOfVocab: any = succ;
-      //     this.selectedClass = this.getClass(classesOfVocab, label);
-      //     this.instance.label = this.selectedClass.label;
-      //     this.instance.uri = this.selectedClass.uri;
-      //   }, err => console.log(err));
+      console.log(this.dataSharingService.selectedClass);
     });
   }
 

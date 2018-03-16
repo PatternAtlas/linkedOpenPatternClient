@@ -31,6 +31,7 @@ import { MarkdownModule } from 'angular2-markdown';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './_services/user.service';
 import { AuthGuardService } from './_guards/auth-guard.service';
+import { DataSharingService } from './_services/data-sharing.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { AuthGuardService } from './_guards/auth-guard.service';
     ToastModule.forRoot(),
     NgbModule.forRoot()
   ],
-  providers: [SparqlService, GithubService, RdfaService, JOwlService, UserService, AuthGuardService],
+  providers: [SparqlService, GithubService, RdfaService, JOwlService, UserService, AuthGuardService, DataSharingService],
   entryComponents: [
     ModalAddPropertyComponent
   ],

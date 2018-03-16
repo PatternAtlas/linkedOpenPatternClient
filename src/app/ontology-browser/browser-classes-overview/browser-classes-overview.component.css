@@ -1,3 +1,12 @@
 .description-label{
     font-weight: bold;
 }
+
+.create-instance-button{
+    text-align: right;
+    cursor: pointer;
+}
+
+.save-button{
+    text-align: right;
+}

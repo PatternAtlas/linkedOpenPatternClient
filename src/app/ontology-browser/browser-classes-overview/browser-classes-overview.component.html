@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" *ngIf="!isCreateInstanceMode; else createInstance">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">TreeView</div>
@@ -11,7 +11,17 @@
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <ng-template #selectClass>Please select a Class.</ng-template>
             <div class="panel panel-default" *ngIf="selectedNode.label; else selectClass">
-                <div class="panel-heading">Description of {{selectedNode?.label}}</div>
+                <div class="panel-heading">
+
+                    <div class="row">
+                        <div class="col-xs-8">
+                            Description of {{selectedNode?.label}}
+                        </div>
+                        <div class="col-xs-4 create-instance-button">
+                            <a (click)="onCreateInstance()">Create instance</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 description-label">
@@ -31,10 +41,18 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-2 description-label">
-                            Relations:
+                            DatatypeProperties:
                         </div>
                         <ul class="col-lg-10">
-                            <li *ngFor="let relation of selectedNode.relations">{{relation.name}}: {{relation.range}}</li>
+                            <li *ngFor="let relation of selectedNode.dataTypeProperties">{{relation["?p"].name}}</li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 description-label">
+                            ObjectProperties:
+                        </div>
+                        <ul class="col-lg-10">
+                            <li *ngFor="let relation of selectedNode.objectProperties">{{relation["?p"].name}}</li>
                         </ul>
                     </div>
                     <div class="row">
@@ -49,4 +67,30 @@
             </div>
         </div>
     </div>
+    <ng-template #createInstance>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                Create Instance of {{selectedNode?.label}}
+                            </div>
+                            <div class="col-lg-2 save-button">
+                                <button type="button" class="btn btn-lg btn-default" (click)="onSaveClick()">save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div *ngFor="let property of instance?.dataTypeProperties">
+                            <markdown (click)=" isEditMode = property['?p'].URI;" *ngIf="isEditMode != property['?p'].URI">
+                                {{property.content}}
+                            </markdown>
+                            <simplemde *ngIf="isEditMode === property['?p'].URI" [(ngModel)]="property.content"></simplemde>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 </div>
