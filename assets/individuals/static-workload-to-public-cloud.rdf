@@ -1,4 +1,5 @@
 <rdf:RDF
+  xmlns:pattern = "https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf"
   xmlns:owl = "http://www.w3.org/2002/07/owl#"
   xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
@@ -9,7 +10,7 @@
 
   <RelatedPattern rdf:ID="StaticWorkloadToPublicCloud">
     <additionalInformation>Here is some additional Information about this relationship</additionalInformation>
-    <hasSource rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/static-workload.rdf"></hasSource>
+    <pattern:hasSource rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/static-workload.rdf"></pattern:hasSource>
     <hasTarget rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/public-cloud.rdf"></hasTarget>
   </RelatedPattern>
 

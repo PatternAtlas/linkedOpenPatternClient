@@ -1,4 +1,5 @@
 <rdf:RDF
+  xmlns:pattern = "https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf"
   xmlns:owl = "http://www.w3.org/2002/07/owl#"
   xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
@@ -11,9 +12,9 @@
     <problem>![alt text](http://www.cloudcomputingpatterns.org/icons/static_workload_icon.png "Logo Title Text 1") `How can an equal utilization be characterized and how can applications experiencing this workload benefit from cloud computing?`</problem>
     <context>### Context
 Static Workloads are characterized by a more-or-less flat utilization profile over time within certain boundaries.</context>
-    <solution>### Solution  
+    <pattern:solution>### Solution  
 An application experiencing Static Workload is less likely to benefit from an elastic cloud that offers a pay-per-use billing, because the number of required resources is constant. 
-![solution](http://www.cloudcomputingpatterns.org/sketches/static_workload_sketch.png)</solution>
+![solution](http://www.cloudcomputingpatterns.org/sketches/static_workload_sketch.png)</pattern:solution>
   </CloudComputingFundamental>
 
 
