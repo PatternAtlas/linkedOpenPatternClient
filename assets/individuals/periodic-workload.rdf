@@ -1,0 +1,15 @@
+<rdf:RDF
+    xmlns:pattern = "https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
+<pattern:CloudComputingFundamental rdf:ID="PublicCloud"> 
+    <pattern:problem>### problem
+
+IT resources with a peaking utilization at reoccurring time intervals experience periodic workload.</pattern:problem> 
+    <pattern:context>### context
+
+In our real lives, periodic tasks and routines are very common. For example, monthly paychecks, monthly telephone bills, yearly car checkups, weekly status reports, or the daily use of public transport during rush hour, all these tasks and routines occur in well-defined intervals.</pattern:context> 
+    <pattern:solution>### solution
+
+From a customer perspective the cost-saving potential in scope of Periodic Workload is to use a provider with a pay-per-use pricing model allowing the decommissioning of resources during non-peak times.</pattern:solution> 
+</pattern:CloudComputingFundamental> 
+</rdf:RDF>
