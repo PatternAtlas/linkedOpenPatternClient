@@ -24,6 +24,8 @@ export class BrowserClassesOverviewComponent implements OnInit {
   };
 
   instance = {
+    fileName: '',
+    patternName: '',
     label: '',
     objectProperties: [],
     dataTypeProperties: [],
@@ -169,13 +171,35 @@ export class BrowserClassesOverviewComponent implements OnInit {
   }
 
   onSaveClick() {
+    const content = this.createRdfFile();
     const authToken = localStorage.getItem('token');
-    this.githubService.addPattern('nameOfThePattern', 'content', authToken)
+    this.githubService.addPattern( this.instance.fileName, content , '6026e2bf55a9effd134ce9103738fa723971b72c')
       .subscribe(succ => {
         this.toastr.success('Pattern saved!', 'Success!');
 
       }, err => this.toastr.error('Something went wrong!', 'Error!'));
 
+  }
+
+  createRdfFile() {
+    const prefix = 'pattern';
+    const prefixValue = 'https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf';
+    let header = `<rdf:RDF
+    xmlns:${prefix} = "${prefixValue}"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> \n`;
+    header += this.createBody(prefix);
+    header += '</rdf:RDF>';
+    return header;
+  }
+
+  createBody(prefix) {
+    const owlClass = this.instance.label.replace(/\s/g, '');
+    let body = `<${prefix}:${owlClass} rdf:ID="PublicCloud"> \n`;
+    this.instance.dataTypeProperties.forEach(p => {
+      body += `    <${prefix}:${p['?p'].name}>${p.content}</${prefix}:${p['?p'].name}> \n`;
+    });
+    body += `</${prefix}:${owlClass}> \n`;
+    return body;
   }
 
 }

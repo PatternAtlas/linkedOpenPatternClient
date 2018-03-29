@@ -69,6 +69,19 @@
     </div>
     <ng-template #createInstance>
         <div class="row">
+            <div class="form-group  col-md-offset-1 col-lg-4 col-md-4">
+                <label for="patternName">Filename:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="patternName" [(ngModel)]="instance.fileName">
+                    <span class="input-group-addon">.rdf</span>
+                </div>
+            </div>
+            <div class="form-group col-lg-offset-2 col-lg-4 col-md-4">
+                <label>Name of Pattern</label>
+                <input class="form-control" [(ngModel)]="instance.patternName">
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-offset-1 col-md-10 col-lg-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">

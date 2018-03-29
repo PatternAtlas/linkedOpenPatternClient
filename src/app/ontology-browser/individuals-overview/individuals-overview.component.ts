@@ -56,9 +56,18 @@ export class IndividualsOverviewComponent implements OnInit {
     this.isEditMode = property['?p'].URI;
     console.log(this.isEditMode);
   }
+  
   onSaveClick() {
     this.isEditMode = '';
     console.log(this.selectedIndividual);
+  }
+
+  creatRdfFile() {
+    const prefix = 'pattern';
+    const prefixValue = 'https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf';
+    const header = `<rdf:RDF
+    xmlns:${prefix} = "${prefixValue}"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#">`;
   }
 
 }

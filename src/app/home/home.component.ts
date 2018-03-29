@@ -12,16 +12,17 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   query = 'SELECT *' +
-  'WHERE {' +
+    'WHERE {' +
     'SERVICE <https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/public-cloud.rdf> {' +
-      '?s ?p ?o  }' +
-  '}';
+    '?s ?p ?o  }' +
+    '}';
 
   constructor(private sparqlService: SparqlService, private http: HttpClient, private activatedRoute: ActivatedRoute,
     private _router: Router) { }
 
   ngOnInit() {
     this.checkForCallbackParams();
+    // tslint:disable-next-line:no-unused-expression
   }
 
   sendQuery() {
@@ -51,7 +52,7 @@ export class HomeComponent implements OnInit {
       client_secret: '159f3516cac71e14f2feedfd8434d4bc0c80692c',
       code: code
     };
-    let headers = {headers: new  HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'})};
+    let headers = { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }) };
     this.http.post(`https://github.com/login/oauth/access_token?
     client_id=${body.client_id}&
     client_secret=${body.client_secret}&

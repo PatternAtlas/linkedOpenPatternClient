@@ -9,3 +9,5 @@ declare var d3:any;
 declare var Jassa: any;
 declare var $:any;
 declare var jOWL:any;
+declare var rdfstore:any;
+declare var $rdf:any;
