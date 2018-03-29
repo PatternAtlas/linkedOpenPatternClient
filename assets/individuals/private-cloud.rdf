@@ -1,0 +1,9 @@
+<rdf:RDF
+    xmlns:pattern = "https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
+<pattern:CloudComputingFundamental rdf:ID="PublicCloud"> 
+    <pattern:problem>### problem</pattern:problem> 
+    <pattern:context>### context</pattern:context> 
+    <pattern:solution>### solution</pattern:solution> 
+</pattern:CloudComputingFundamental> 
+</rdf:RDF>
