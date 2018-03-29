@@ -1,5 +1,5 @@
 <rdf:RDF
-    xmlns:pattern = "http://purl.org/semantic-pattern"
+    xmlns:pattern = "http://purl.org/semantic-pattern#"
     xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
 <pattern:CloudComputingFundamental rdf:ID="PublicCloud"> 
     <pattern:problem>### problem
