@@ -11,13 +11,11 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  query = 'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n' +
-    'SELECT ?name ?knows\n' +
-    'WHERE {\n' +
-    '  SERVICE <https://patternpedia.github.io/rdf-playground/rdfa.html> {\n' +
-    '    ?s foaf:name ?name .' +
-    '    ?s foaf:knows ?knows .  }\n' +
-    '}';
+  query = 'SELECT *' +
+  'WHERE {' +
+    'SERVICE <https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/public-cloud.rdf> {' +
+      '?s ?p ?o  }' +
+  '}';
 
   constructor(private sparqlService: SparqlService, private http: HttpClient, private activatedRoute: ActivatedRoute,
     private _router: Router) { }

@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { TreeComponent, TreeNode } from 'angular-tree-component';
 import { Router } from '@angular/router';
 import { DataSharingService } from '../../_services/data-sharing.service';
+import { GithubService } from '../../_services/github.service';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-browser-classes-overview',
@@ -36,7 +38,14 @@ export class BrowserClassesOverviewComponent implements OnInit {
   @ViewChild(TreeComponent)
   private tree: TreeComponent;
 
-  constructor(private router: Router, private dataSharingService: DataSharingService) { }
+  constructor(
+    private router: Router,
+    private dataSharingService: DataSharingService,
+    private githubService: GithubService,
+    public toastr: ToastsManager,
+    vcr: ViewContainerRef) {
+      this.toastr.setRootViewContainerRef(vcr);
+    }
 
   ngOnInit() {
     this.loadClasses();
@@ -148,7 +157,7 @@ export class BrowserClassesOverviewComponent implements OnInit {
     this.preFillInstance();
   }
 
-  preFillInstance () {
+  preFillInstance() {
     this.instance.dataTypeProperties = [];
     this.instance.label = this.selectedNode.label;
     this.instance.objectProperties = this.selectedNode.objectProperties;
@@ -160,7 +169,13 @@ export class BrowserClassesOverviewComponent implements OnInit {
   }
 
   onSaveClick() {
-    console.log(this.instance);
+    const authToken = localStorage.getItem('token');
+    this.githubService.addPattern('nameOfThePattern', 'content', authToken)
+      .subscribe(succ => {
+        this.toastr.success('Pattern saved!', 'Success!');
+
+      }, err => this.toastr.error('Something went wrong!', 'Error!'));
+
   }
 
 }
