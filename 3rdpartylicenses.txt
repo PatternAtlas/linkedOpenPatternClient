@@ -477,6 +477,10 @@ MIT
 MIT
 MIT
 
+@angular/compiler@5.2.6
+MIT
+MIT
+
 mobx-angular@2.1.1
 MIT
 The MIT License (MIT)
