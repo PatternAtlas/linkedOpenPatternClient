@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class SparqlService {
@@ -12,6 +12,14 @@ export class SparqlService {
 
   getVocab(uri: String) {
     return this.http.post('http://localhost:8080/api/getClasses', uri);
+  }
+
+  crawlPattern(fileInfos: any) {
+    const patternUrls = [];
+    fileInfos.forEach(el => {
+      patternUrls.push('https://patternpedia.github.io/linkedOpenPatternClient/' + el.path);
+    });
+    return this.http.post('http://localhost:8080/api/crawlPattern', patternUrls);
   }
 
 }

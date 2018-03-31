@@ -23,31 +23,23 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.checkForCallbackParams();
-    this.ghService.getTurtle();
-    const file = `
-    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-    @prefix pattern: <http://purl.org/semantic-pattern#>.
-    <#periodic-workload> a pattern:CloudComputingPattern;
-        pattern:proplem "##Problem" ;
-        pattern:context "##Context";
-        pattern:solution "##Solution" .`;
-
-    const fileTwo = `
-    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-    @prefix pattern: <https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf>.
-    <#public-cloud>
-        pattern:proplem "##Problem" ;
-        pattern:context "##Context";
-        pattern:solution "##Solution" .`;
-
-    rdfstore.create(function (err, store) {
-      store.load('remote', "http://localhost:8080/api/readFile"
-      , function (err, results) {
-        console.log(store);
-       console.log(results);  
-      });
+    this.ghService.getFilesOfADirectory('assets/individuals')
+    .subscribe(fileInfos => {
+      this.sparqlService.crawlPattern(fileInfos)
+      .subscribe((succ) => {
+        rdfstore.create(function (err, store) {
+          store.load('text/turtle', succ.graphAsTurtleString, function (err, results) {
+            store.execute("SELECT * { ?s ?p ?o }", function(err, results){
+              if(!err) {
+              // process results
+              if(results[0].s.token === 'uri') {
+                console.log(results[0].s.value);
+              }
+              }
+            });
+          });
+        });
+      }, err => console.log(err));
     });
   }
 
