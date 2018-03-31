@@ -11,7 +11,7 @@
   <pattern:RelatedPattern rdf:ID="ExternalRelationship">
     <pattern:additionalInformation>This is an relationship to an external pattern</pattern:additionalInformation>
     <pattern:hasSource rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/static-workload.rdf"></pattern:hasSource>
-    <pattern:hasTarget rdf:resource="https://ckrieger.github.io/linkedOpenPatternClient//assets/individuals/unpredictable-workload.ttl"></pattern:hasTarget>
+    <pattern:hasTarget rdf:resource="https://ckrieger.github.io/linkedOpenPatternClient/assets/unpredictable-workload.ttl"></pattern:hasTarget>
   </pattern:RelatedPattern>
 
 
