@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SparqlService } from '../_services/sparql.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { GithubService } from '../_services/github.service';
 
 
 @Component({
@@ -18,11 +19,36 @@ export class HomeComponent implements OnInit {
     '}';
 
   constructor(private sparqlService: SparqlService, private http: HttpClient, private activatedRoute: ActivatedRoute,
-    private _router: Router) { }
+    private _router: Router, private ghService: GithubService) { }
 
   ngOnInit() {
     this.checkForCallbackParams();
-    // tslint:disable-next-line:no-unused-expression
+    this.ghService.getTurtle();
+    const file = `
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix pattern: <http://purl.org/semantic-pattern#>.
+    <#periodic-workload> a pattern:CloudComputingPattern;
+        pattern:proplem "##Problem" ;
+        pattern:context "##Context";
+        pattern:solution "##Solution" .`;
+
+    const fileTwo = `
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix pattern: <https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf>.
+    <#public-cloud>
+        pattern:proplem "##Problem" ;
+        pattern:context "##Context";
+        pattern:solution "##Solution" .`;
+
+    rdfstore.create(function (err, store) {
+      store.load('remote', "http://localhost:8080/api/readFile"
+      , function (err, results) {
+        console.log(store);
+       console.log(results);  
+      });
+    });
   }
 
   sendQuery() {

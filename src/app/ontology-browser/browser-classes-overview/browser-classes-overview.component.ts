@@ -173,7 +173,7 @@ export class BrowserClassesOverviewComponent implements OnInit {
   onSaveClick() {
     const content = this.createRdfFile();
     const authToken = localStorage.getItem('token');
-    this.githubService.addPattern( this.instance.fileName, content , '6026e2bf55a9effd134ce9103738fa723971b72c')
+    this.githubService.addPattern( this.instance.fileName, content , 'f93008e056ef246a31dd00819774ce71fdeaf117')
       .subscribe(succ => {
         this.toastr.success('Pattern saved!', 'Success!');
 

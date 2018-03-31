@@ -2,6 +2,7 @@ import { RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlatformLocation } from '@angular/common';
+import { ThrowStmt } from '@angular/compiler';
 
 @Injectable()
 export class GithubService {
@@ -22,12 +23,17 @@ export class GithubService {
       'branch': 'gh-pages'
     };
     const auth = { Authorization: `Token ${authToken}` };
-    return this.http.put(`${this.ghBaseUrl}/repos/${this.userName}/${this.repoName}/contents/patterns/${patternName}.html`,
+    return this.http.put(`${this.ghBaseUrl}/repos/${this.userName}/${this.repoName}/contents/assets/individuals/${patternName}.rdf`,
       body, { headers: auth });
   }
 
   getPattern(fileName: string) {
     return this.http.get(`${this.ghBaseUrl}/repos/${this.userName}/${this.repoName}/contents/patterns/${fileName}.html?ref=gh-pages`);
+  }
+
+  getTurtle() {
+    const cType = { "Content-Type": `text/turtle`, "Accept" : `text/turtle` };
+    this.http.get('http://localhost:8080/api/readFile', {headers: cType}).subscribe(succ => console.log(succ.json()));
   }
 
   private getUserName(): string {
