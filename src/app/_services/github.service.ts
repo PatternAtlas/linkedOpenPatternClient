@@ -31,10 +31,10 @@ export class GithubService {
     return this.http.get(`${this.ghBaseUrl}/repos/${this.userName}/${this.repoName}/contents/patterns/${fileName}.html?ref=gh-pages`);
   }
 
-  getTurtle() {
-    const cType = { "Content-Type": `text/turtle`, "Accept" : `text/turtle` };
-    this.http.get('http://localhost:8080/api/readFile', {headers: cType}).subscribe(succ => console.log(succ.json()));
+  getFilesOfADirectory(directory: string) {
+    return this.http.get(`${this.ghBaseUrl}/repos/${this.userName}/${this.repoName}/contents/${directory}?ref=gh-pages`);
   }
+
 
   private getUserName(): string {
     // const baseUrl =  (this.platformLocation as any).location.href;
