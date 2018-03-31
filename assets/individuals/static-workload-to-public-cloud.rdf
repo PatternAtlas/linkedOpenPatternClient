@@ -8,11 +8,11 @@
   
 
 
-  <RelatedPattern rdf:ID="StaticWorkloadToPublicCloud">
-    <additionalInformation>Here is some additional Information about this relationship</additionalInformation>
+  <pattern:RelatedPattern rdf:ID="StaticWorkloadToPublicCloud">
+    <pattern:additionalInformation>Here is some additional Information about this relationship</pattern:additionalInformation>
     <pattern:hasSource rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/static-workload.rdf"></pattern:hasSource>
-    <hasTarget rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/public-cloud.rdf"></hasTarget>
-  </RelatedPattern>
+    <pattern:hasTarget rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/public-cloud.rdf"></pattern:hasTarget>
+  </pattern:RelatedPattern>
 
 
 </rdf:RDF>
