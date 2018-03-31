@@ -1,8 +1,7 @@
 <rdf:RDF
-  xmlns     = "https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf#"
   xmlns:owl = "http://www.w3.org/2002/07/owl#"
   xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#"
   xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
 
   <owl:Ontology rdf:about="">
@@ -28,19 +27,16 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="#problem"/>
-      	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="#context"/>
-      	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="#solution"/>
-      	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -107,7 +103,6 @@
     <rdfs:subClassOf>
         <owl:Restriction>
           <owl:onProperty rdf:resource="#additionalInformation" />
-      	  <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
         </owl:Restriction>
       </rdfs:subClassOf>
       <rdfs:subClassOf>
@@ -119,7 +114,6 @@
     <rdfs:subClassOf>
         <owl:Restriction>
           <owl:onProperty rdf:resource="#additionalInformation" />
-      	  <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
         </owl:Restriction>
       </rdfs:subClassOf>
       <rdfs:subClassOf>
@@ -131,7 +125,6 @@
     <rdfs:subClassOf>
         <owl:Restriction>
           <owl:onProperty rdf:resource="#additionalInformation" />
-      	  <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
         </owl:Restriction>
       </rdfs:subClassOf>
       <rdfs:subClassOf>
@@ -143,7 +136,6 @@
     <rdfs:subClassOf>
         <owl:Restriction>
           <owl:onProperty rdf:resource="#additionalInformation" />
-      	  <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
         </owl:Restriction>
       </rdfs:subClassOf>
       <rdfs:subClassOf>
