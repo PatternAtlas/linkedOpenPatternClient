@@ -1,3 +1,10 @@
+
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+   ]>
+
 <rdf:RDF
   xmlns     = "https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf#"
   xmlns:owl = "http://www.w3.org/2002/07/owl#"
