@@ -1,0 +1,464 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://purl.org/semantic-pattern#"
+     xml:base="http://purl.org/semantic-pattern"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://purl.org/semantic-pattern#"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/semantic-pattern#aggregatesCS -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/semantic-pattern#aggregatesCS">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#CSRDAggregation"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#ConcreteSolutionDescriptor"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#hasSource -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/semantic-pattern#hasSource">
+        <owl:inverseOf rdf:resource="http://purl.org/semantic-pattern#isSourceOf"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#hasTarget -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/semantic-pattern#hasTarget">
+        <owl:inverseOf rdf:resource="http://purl.org/semantic-pattern#isTargetOf"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#implementsPattern -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/semantic-pattern#implementsPattern">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#ConcreteSolutionDescriptor"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#isSourceOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/semantic-pattern#isSourceOf">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#isTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/semantic-pattern#isTargetOf">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/semantic-pattern#aggregationDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#aggregationDescription">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#CSRDAggregation"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#context -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#context">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#drivingQuestion -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#drivingQuestion">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#hasCSArtifact -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#hasCSArtifact">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#ConcreteSolutionDescriptor"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#intent -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#intent">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#patternName -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#patternName">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#precondition -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#precondition">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#CSRDAggregation"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#solution -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#solution">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/semantic-pattern#Alternative -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#Alternative">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CSRD -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CSRD"/>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CSRDAggregation -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CSRDAggregation">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#CSRD"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#aggregatesCS"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.org/semantic-pattern#ConcreteSolutionDescriptor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CSRDAlternative -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CSRDAlternative">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#CSRD"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CloudApplicationArchitecturePattern -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CloudApplicationArchitecturePattern">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CloudApplicationManagementPattern -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CloudApplicationManagementPattern">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CloudComputingFundamentalPattern -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CloudComputingFundamentalPattern">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CloudComputingPattern -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CloudComputingPattern">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#context"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#drivingQuestion"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#intent"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#patternName"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#solution"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CloudOfferingPattern -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CloudOfferingPattern">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#CompositeCloudApplicationPattern -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#CompositeCloudApplicationPattern">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#CloudComputingPattern"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#ConcreteSolutionDescriptor -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#ConcreteSolutionDescriptor">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#implementsPattern"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#hasCSArtifact"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#ConsiderAfter -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#ConsiderAfter">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#KnownUse -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#KnownUse">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#PRD -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#PRD">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#hasSource"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#hasTarget"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#Pattern -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#Pattern"/>
+    
+
+
+    <!-- http://purl.org/semantic-pattern#SeeAlso -->
+
+    <owl:Class rdf:about="http://purl.org/semantic-pattern#SeeAlso">
+        <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
