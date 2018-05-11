@@ -1,5 +1,5 @@
 <rdf:RDF
-  xmlns:pattern = "http://purl.org/semantic-pattern#"
+  xmlns:pattern = "https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf"
   xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
   
