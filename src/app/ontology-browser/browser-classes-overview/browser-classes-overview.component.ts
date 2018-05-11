@@ -54,7 +54,7 @@ export class BrowserClassesOverviewComponent implements OnInit {
   }
 
   loadClasses() {
-    jOWL.load('assets/vocabulary/semantic-pattern.rdf', () => {
+    jOWL.load('assets/vocabulary/sePaSoReVocabulary.owl', () => {
       new jOWL.SPARQL_DL('Class(?x)').execute({
         onComplete: (result) => {
           this.onJowlComplete(result);
