@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       this.sparqlService.crawlPattern(fileInfos)
       .subscribe((succ) => {
         rdfstore.create(function (err, store) {
-          store.load('text/turtle', succ.graphAsTurtleString, function (err, results) {
+          store.load('text/turtle', succ, function (err, results) {
             store.execute("SELECT * { ?s ?p ?o }", function(err, results){
               if(!err) {
               // process results
