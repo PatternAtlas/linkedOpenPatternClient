@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './_services/user.service';
 import { AuthGuardService } from './_guards/auth-guard.service';
 import { DataSharingService } from './_services/data-sharing.service';
+import { ModalAddRelationshipComponent } from './modal-add-relationship/modal-add-relationship.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { DataSharingService } from './_services/data-sharing.service';
     PropertiesOverviewComponent,
     IndividualsOverviewComponent,
     BrowserClassesOverviewComponent,
-    LoginComponent
+    LoginComponent,
+    ModalAddRelationshipComponent
   ],
   imports: [
     AppRoutingModule,
@@ -68,7 +70,8 @@ import { DataSharingService } from './_services/data-sharing.service';
   ],
   providers: [SparqlService, GithubService, RdfaService, JOwlService, UserService, AuthGuardService, DataSharingService],
   entryComponents: [
-    ModalAddPropertyComponent
+    ModalAddPropertyComponent,
+    ModalAddRelationshipComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -9,3 +9,8 @@
    .modal-open .modal{
      opacity: 1;
    }
+
+   .modal-dialog{
+    margin-top: 10% !important;
+  }
+  

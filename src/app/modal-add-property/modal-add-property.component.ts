@@ -12,7 +12,7 @@ export class ModalAddPropertyComponent {
   selectedProperty;
   value;
 
-  constructor(public activeModal: NgbActiveModal) { 
+  constructor(public activeModal: NgbActiveModal) {
     this.loadIndividuals();
   }
 

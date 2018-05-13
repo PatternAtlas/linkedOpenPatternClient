@@ -1,33 +1,56 @@
 <div class="container-fluid">
-
   <div class="row">
-    <div class="form-group col-lg-5 col-md-5">
-      <label for="patternName">Name:</label>
+    <div class="form-group  col-md-offset-3 col-lg-4 col-md-4">
+      <label for="patternName">Filename:</label>
       <div class="input-group">
-        <input type="text" class="form-control" id="patternName" [(ngModel)]="patternName">
-        <span class="input-group-addon">.html</span>
+        <input type="text" class="form-control" id="patternName" [(ngModel)]="instance.fileName">
+        <span class="input-group-addon">.rdf</span>
       </div>
     </div>
-    <div class="form-group col-lg-offset-1 col-lg-5">
-      <label>AuthToken:</label>
-      <input class="form-control" [(ngModel)]="token">
-    </div>
-  </div>
-
-
-
-  <div class="row">
-    <div class="form-group col-lg-6 col-md-6">
-      <label>Pattern:</label>
-      <textarea class="form-control rdfaEditor" [(ngModel)]="patternContent" (keyup)="getGraphData()"></textarea>
-      <button type="button" class="btn btn-default" (click)="savePattern()">save</button>
-    </div>
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <label>Preview:</label>
-      <div id="preview" class="rdfaPreview" [innerHTML]="patternContent | safeHtml"></div>
+    <div class="form-group  col-lg-4 col-md-4">
+      <label>Name of Pattern</label>
+      <input class="form-control" [(ngModel)]="instance.patternName">
     </div>
   </div>
   <div class="row">
-    <app-rdf-graph [data]="graphData"></app-rdf-graph>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Pattern type</div>
+        <div class="panel-body">
+          <tree-root #tree [nodes]="nodes" [options]="options" (activate)="nodeClickEvent($event.node.data.jowlNode)"></tree-root>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-lg-10">
+              Create Pattern of Type {{selectedNode.label}}
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div *ngFor="let property of instance?.dataTypeProperties">
+            <markdown (click)=" isEditMode = property['?p'].URI;" *ngIf="isEditMode != property['?p'].URI">
+              {{property.content}}
+            </markdown>
+            <simplemde *ngIf="isEditMode === property['?p'].URI" [(ngModel)]="property.content"></simplemde>
+          </div>
+          <div class="row add-relationship-row">
+              <div class="col-lg-offset-10 col-lg-2">
+                  <button type="button" class="btn btn-info btn-circle btn-xl" (click)="openModalAddRelationship()"><i aria-hidden="true" class="fas fa-plus"></i></button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  
+  <div class="row">
+    <div class="col-lg-offset-9 col-lg-2 save-button">
+          <button type="button" class="btn btn-lg btn-default" (click)="onSaveClick()">save</button>
+    </div>
+  </div>
+  
 </div>

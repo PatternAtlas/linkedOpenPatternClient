@@ -258,6 +258,18 @@
         </rdfs:domain>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     </owl:DatatypeProperty>
+
+    <!-- http://purl.org/semantic-pattern#additionalDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/semantic-pattern#additionalDescription">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/semantic-pattern#PRD"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -337,9 +349,9 @@
 
     <owl:Class rdf:about="http://purl.org/semantic-pattern#CloudComputingPattern">
         <rdfs:subClassOf rdf:resource="http://purl.org/semantic-pattern#Pattern"/>
-        <rdfs:subClassOf>
+         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#context"/>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#intent"/>
                 <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -351,7 +363,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#intent"/>
+                <owl:onProperty rdf:resource="http://purl.org/semantic-pattern#context"/>
                 <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
