@@ -26,6 +26,14 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-10">
+          <div class="form-group">
+              <label>Additonal Information:</label>
+              <simplemde  [(ngModel)]="additionalInformation"></simplemde> 
+          </div>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="close()">Add</button>

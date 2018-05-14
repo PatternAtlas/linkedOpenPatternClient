@@ -12,6 +12,7 @@ export class ModalAddRelationshipComponent implements OnInit {
   patterns = [];
   selectedPRD;
   selectedPattern;
+  additionalDescription = '';
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
