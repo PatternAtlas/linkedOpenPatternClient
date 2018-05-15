@@ -1,7 +1,7 @@
 <rdf:RDF
     xmlns:pattern = "http://purl.org/semantic-pattern#"
     xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
-<pattern:CloudComputingFundamental rdf:ID="PublicCloud"> 
+<pattern:CloudComputingFundamental rdf:ID="PeriodicWorkload"> 
     <pattern:problem>### problem
 
 IT resources with a peaking utilization at reoccurring time intervals experience periodic workload.</pattern:problem> 
