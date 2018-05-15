@@ -1,0 +1,9 @@
+<rdf:RDF
+    xmlns:pattern = "http://purl.org/semantic-pattern#"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
+<pattern:CloudComputingFundamental rdf:ID="PrivateCloud"> 
+    <pattern:problem>### problem</pattern:problem> 
+    <pattern:context>### context</pattern:context> 
+    <pattern:solution>### solution</pattern:solution> 
+</pattern:CloudComputingFundamental> 
+</rdf:RDF>
