@@ -3,7 +3,7 @@ import { GithubService } from '../_services/github.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { RdfaService } from '../_services/rdfa.service';
 import { TreeComponent, TreeNode } from 'angular-tree-component';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAddRelationshipComponent } from '../modal-add-relationship/modal-add-relationship.component';
 
 @Component({
@@ -27,6 +27,7 @@ export class AddPatternComponent implements OnInit {
     label: '',
     objectProperties: [],
     dataTypeProperties: [],
+    relationships : []
   };
 
   @ViewChild(TreeComponent)
@@ -171,6 +172,8 @@ export class AddPatternComponent implements OnInit {
   openModalAddRelationship() {
     const modalRef = this.modalService.open(ModalAddRelationshipComponent);
     modalRef.result.then(result => {
+      this.instance.relationships.push(result);
+      console.log(result);
     });
   }
 

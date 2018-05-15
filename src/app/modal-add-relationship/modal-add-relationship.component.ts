@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { GithubService } from '../_services/github.service';
+import { SparqlService } from '../_services/sparql.service';
 
 @Component({
   selector: 'app-modal-add-relationship',
@@ -12,11 +14,13 @@ export class ModalAddRelationshipComponent implements OnInit {
   patterns = [];
   selectedPRD;
   selectedPattern;
-  additionalDescription = '';
-  constructor(public activeModal: NgbActiveModal) { }
+  additionalInformation = '';
+  constructor(public activeModal: NgbActiveModal,  private ghService: GithubService, private sparqlService: SparqlService) { }
+
 
   ngOnInit() {
     this.loadPRDs();
+    this.getPatternIndividuals();
   }
 
   loadPRDs() {
@@ -70,9 +74,40 @@ export class ModalAddRelationshipComponent implements OnInit {
     return dataTypeProperties;
   }
 
+  getPatternIndividuals() {
+    const patterns = [];
+    this.ghService.getFilesOfADirectory('assets/individuals')
+    .subscribe(fileInfos => {
+      this.sparqlService.crawlPattern(fileInfos)
+      .subscribe((succ) => {
+        rdfstore.create(function (err, store) {
+          store.load('text/turtle', succ.graphAsTurtleString, function (err, results) {
+            const predicate = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
+            const object = 'http://purl.org/semantic-pattern#CloudComputingFundamental';
+            store.execute('SELECT * { ?s ?p ?o }', (err, results) => {
+              if(!err) {
+              results.forEach(result => {
+                  if(result.p.value === predicate && result.o.value === object) {
+                    patterns.push(result.s);
+                    console.log(result)
+                  }               
+              });
+              }
+            });
+          });
+        });
+        this.patterns = patterns;
+      }, err => console.log(err));
+    });
+  }
+
   close() {
-    const result = '';
-    this.activeModal.close(result);
+    const relationship = {
+      linkedPattern : this.selectedPattern,
+      prdType: this.selectedPRD,
+      additionalInformation: this.additionalInformation
+    };
+    this.activeModal.close(relationship);
   }
 
 }

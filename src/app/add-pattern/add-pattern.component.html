@@ -37,6 +37,15 @@
             </markdown>
             <simplemde *ngIf="isEditMode === property['?p'].URI" [(ngModel)]="property.content"></simplemde>
           </div>
+          <div class="row">
+            <div *ngFor="let relationship of instance?.relationships">
+                <ng-template #tipContent>Hello!</ng-template>
+                <a [ngbTooltip]="tipContent"> {{relationship.prdType.name}} </a> relationship to {{relationship.linkedPattern.value}}
+                <button type="button" class="btn btn-outline-secondary" [ngbTooltip]="tipContent">
+                    I've got markup and bindings in my tooltip!
+                  </button>
+            </div>
+         </div>
           <div class="row add-relationship-row">
               <div class="col-lg-offset-10 col-lg-2">
                   <button type="button" class="btn btn-info btn-circle btn-xl" (click)="openModalAddRelationship()"><i aria-hidden="true" class="fas fa-plus"></i></button>
@@ -49,7 +58,7 @@
   
   <div class="row">
     <div class="col-lg-offset-9 col-lg-2 save-button">
-          <button type="button" class="btn btn-lg btn-default" (click)="onSaveClick()">save</button>
+          <button type="button" class="btn btn-lg btn-default" (click)="onSaveClick()"  ngbTooltip="Tooltip on top">save</button>
     </div>
   </div>
   

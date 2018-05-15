@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SparqlService } from '../_services/sparql.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { GithubService } from '../_services/github.service';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -11,6 +12,9 @@ import { GithubService } from '../_services/github.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild('tleft') public tooltip: NgbTooltip;
+
 
   query = 'SELECT *' +
     'WHERE {' +
@@ -21,6 +25,10 @@ export class HomeComponent implements OnInit {
   constructor(private sparqlService: SparqlService, private http: HttpClient, private activatedRoute: ActivatedRoute,
     private _router: Router, private ghService: GithubService) { }
 
+ ngAfterViewInit() {
+      this.tooltip.open();
+  }
+
   ngOnInit() {
     this.checkForCallbackParams();
     this.ghService.getFilesOfADirectory('assets/individuals')
@@ -28,13 +36,18 @@ export class HomeComponent implements OnInit {
       this.sparqlService.crawlPattern(fileInfos)
       .subscribe((succ) => {
         rdfstore.create(function (err, store) {
-          store.load('text/turtle', succ, function (err, results) {
-            store.execute("SELECT * { ?s ?p ?o }", function(err, results){
+          console.log(store);
+          store.load('text/turtle', succ.graphAsTurtleString, function (err, results) {
+            const predicate = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
+            const object = 'http://purl.org/semantic-pattern#CloudComputingFundamental';
+            store.execute('SELECT * { ?s ?p ?o }', function(err, results){
               if(!err) {
-              // process results
-              if(results[0].s.token === 'uri') {
-                console.log(results[0].s.value);
-              }
+              results.forEach(result => {
+                  if(result.p.value === predicate && result.o.value === object) {
+                    console.log(result.s);
+                  }               
+              });
+              //console.log(results);
               }
             });
           });
