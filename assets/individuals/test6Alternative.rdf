@@ -1,0 +1,9 @@
+<rdf:RDF
+    xmlns:pattern = "http://purl.org/semantic-pattern#"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
+<pattern:Alternative rdf:ID="Alternative"> 
+    <pattern:additionalDescription>### additionalDescription</pattern:additionalDescription> 
+<pattern:hasSource rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/test6"></pattern:hasSource> 
+<pattern:hasTarget rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/private-cloud.rdf#PrivateCloud"></pattern:hasTarget> 
+</pattern:Alternative> 
+</rdf:RDF>
