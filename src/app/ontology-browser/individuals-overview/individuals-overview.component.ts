@@ -12,6 +12,7 @@ declare var SimpleMDE: any;
 export class IndividualsOverviewComponent implements OnInit {
 
   patternTypes = [
+    'http://purl.org/semantic-pattern#CloudComputingFundamentalPattern',
     'http://purl.org/semantic-pattern#CloudComputingFundamental',
     'http://purl.org/semantic-pattern#CloudComputingPattern',
     'http://purl.org/semantic-pattern#CloudOfferingPattern',
