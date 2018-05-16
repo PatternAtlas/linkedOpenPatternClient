@@ -41,7 +41,7 @@ export class ModalAddRelationshipComponent implements OnInit {
       itemArray.each((el) => {
         if (el.name === 'PRD') {
           this.typesOfPRDs = this.getSubClasses(el);
-        }
+          }
       });
     });
   }
