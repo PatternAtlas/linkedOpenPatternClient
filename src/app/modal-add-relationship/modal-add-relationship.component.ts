@@ -83,11 +83,16 @@ export class ModalAddRelationshipComponent implements OnInit {
             rdfstore.create(function (err, store) {
               store.load('text/turtle', succ.graphAsTurtleString, function (err, results) {
                 const predicate = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
-                const object = 'http://purl.org/semantic-pattern#CloudComputingFundamental';
+                const patternTypes = [
+                  'http://purl.org/semantic-pattern#CloudComputingFundamental',
+                  'http://purl.org/semantic-pattern#CloudComputingPattern',
+                  'http://purl.org/semantic-pattern#CloudOfferingPattern',
+                  'http://purl.org/semantic-pattern#CompositeCloudApplicationPattern'
+                ];
                 store.execute('SELECT * { ?s ?p ?o }', (err, results) => {
                   if (!err) {
                     results.forEach(result => {
-                      if (result.p.value === predicate && result.o.value === object) {
+                      if (result.p.value === predicate && patternTypes.includes(result.o.value)) {
                         patterns.push(result.s);
                         console.log(result);
                       }

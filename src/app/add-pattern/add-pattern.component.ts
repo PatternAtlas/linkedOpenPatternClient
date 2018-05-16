@@ -27,7 +27,7 @@ export class AddPatternComponent implements OnInit {
     label: '',
     objectProperties: [],
     dataTypeProperties: [],
-    relationships : []
+    relationships: []
   };
 
   @ViewChild(TreeComponent)
@@ -139,34 +139,80 @@ export class AddPatternComponent implements OnInit {
 
 
   onSaveClick() {
-    const content = this.createRdfFile();
+    const contentPatternFile = this.createPatternRdfData(this.instance);
     const authToken = localStorage.getItem('token');
-    this.githubService.addPattern(this.instance.fileName, content, 'f93008e056ef246a31dd00819774ce71fdeaf117')
+    this.githubService.addPattern(this.instance.fileName, contentPatternFile, '7ee70d3e1beb16ef481b0d71bc8d81eb10e76605')
       .subscribe(succ => {
         this.toastr.success('Pattern saved!', 'Success!');
-
+        this.instance.relationships.forEach(relationship => {
+          this.saveRelationshipsOnGithub(relationship);
+        });
       }, err => this.toastr.error('Something went wrong!', 'Error!'));
   }
 
-  createRdfFile() {
-    const prefix = 'pattern';
-    const prefixValue = 'https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf';
-    let header = `<rdf:RDF
-    xmlns:${prefix} = "${prefixValue}"
-    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> \n`;
-    header += this.createBody(prefix);
-    header += '</rdf:RDF>';
-    return header;
+  saveRelationshipsOnGithub(relationship) {
+    const contentOfRelationshipFile = this.createRelationshipRdfData(relationship);
+    const authToken = localStorage.getItem('token');
+    const fileNameOfRelationship = this.instance.fileName + relationship.prdType.name; // todo generate unique filename
+    this.githubService.addPattern(fileNameOfRelationship, contentOfRelationshipFile, '7ee70d3e1beb16ef481b0d71bc8d81eb10e76605')
+      .subscribe(succ => {
+        this.toastr.success('Relationship saved!', 'Success!');
+      }, err => this.toastr.error('Something went wrong!', 'Error!'));
   }
 
-  createBody(prefix) {
-    const owlClass = this.instance.label.replace(/\s/g, '');
-    let body = `<${prefix}:${owlClass} rdf:ID="PublicCloud"> \n`;
+  createPatternRdfData(fileData) {
+    const header = this.createHeader();
+    let rdfFileContent = header + this.createBodyPattern(fileData);
+    rdfFileContent += '</rdf:RDF>';
+    return rdfFileContent;
+  }
+
+  createRelationshipRdfData(fileData) {
+    const header = this.createHeader();
+    let rdfFileContent = header + this.createBodyRelationship(fileData);
+    rdfFileContent += '</rdf:RDF>';
+    return rdfFileContent;
+  }
+
+  createHeader() {
+    const prefix = 'pattern';
+    const prefixValue = 'http://purl.org/semantic-pattern#';
+    const header = `<rdf:RDF
+    xmlns:${prefix} = "${prefixValue}"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> \n`;
+    return header;
+  }
+  createBodyPattern(fileData) {
+    const prefix = 'pattern';
+    const owlClass = fileData.label.replace(/\s/g, '');
+    let body = `<${prefix}:${owlClass} rdf:ID="${fileData.patternName}"> \n`;
     this.instance.dataTypeProperties.forEach(p => {
       body += `    <${prefix}:${p['?p'].name}>${p.content}</${prefix}:${p['?p'].name}> \n`;
     });
     body += `</${prefix}:${owlClass}> \n`;
     return body;
+  }
+
+  createBodyRelationship(relationship) {
+    const prefix = 'pattern';
+    const owlClass = relationship.prdType.name;
+    let body = `<${prefix}:${owlClass} rdf:ID="${relationship.prdType.name}"> \n`;
+    relationship.prdType.dataTypeProperties.forEach(p => {
+      body += `    <${prefix}:${p['?p'].name}>${relationship.additionalInformation}</${prefix}:${p['?p'].name}> \n`;
+    });
+    body += this.createObjectPropertiesOfPRD(relationship);
+    body += `</${prefix}:${owlClass}> \n`;
+    return body;
+  }
+
+  // this is still hardcoded
+  createObjectPropertiesOfPRD(relationship) {
+    const prefix = 'pattern';
+    const baseUrlOfGithubRepo = 'https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/';
+    const sourceIRI = baseUrlOfGithubRepo + this.instance.fileName + '.rdf';
+    const objecPropertyHasSource = `<${prefix}:hasSource rdf:resource="${sourceIRI}"></${prefix}:hasSource> \n`;
+    const objecPropertyHasTarget = `<${prefix}:hasTarget rdf:resource="${relationship.linkedPattern.value}"></${prefix}:hasTarget> \n`;
+    return objecPropertyHasSource + objecPropertyHasTarget;
   }
 
   openModalAddRelationship() {
