@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GithubService } from '../../_services/github.service';
+import { SparqlService } from '../../_services/sparql.service';
 
 declare var SimpleMDE: any;
 
@@ -9,65 +11,58 @@ declare var SimpleMDE: any;
 })
 export class IndividualsOverviewComponent implements OnInit {
 
+  patternTypes = [
+    'http://purl.org/semantic-pattern#CloudComputingFundamental',
+    'http://purl.org/semantic-pattern#CloudComputingPattern',
+    'http://purl.org/semantic-pattern#CloudOfferingPattern',
+    'http://purl.org/semantic-pattern#CompositeCloudApplicationPattern'
+  ];
 
+  prdTypes =  [
+    'http://purl.org/semantic-pattern#PRD',
+    'http://purl.org/semantic-pattern#Alternative',
+    'http://purl.org/semantic-pattern#KnownUse',
+    'http://purl.org/semantic-pattern#ConsiderAfter',
+    'http://purl.org/semantic-pattern#SeeAlso',
+  ];
 
-  individuals = [];
+  patternIndividuals = [];
   selectedIndividual;
   isEditMode = '';
-  constructor() { }
+  constructor(private ghService: GithubService, private sparqlService: SparqlService) { }
 
   ngOnInit() {
-    this.getIndividuals();
-  }
-
-  getIndividuals() {
-    jOWL.load('assets/vocabulary/semantic-pattern.rdf', () => {
-      const arr = new jOWL.Ontology.Array();
-      // tslint:disable-next-line:forin
-      for (const key in jOWL.index('Thing')) {
-        this.individuals.push(jOWL.index('Thing')[key]);
-        arr.concat(jOWL.index('Thing')[key], true);
-      }
-      this.individuals = arr.items;
+    this.ghService.getFilesOfADirectory('assets/individuals')
+    .subscribe(fileInfos => {
+      this.sparqlService.crawlPattern(fileInfos)
+        .subscribe((succ: any) => {
+          rdfstore.create((err, store) => {
+            store.load('text/turtle', succ.graphAsTurtleString, (err, results) => {
+              store.execute('SELECT * { ?s ?p ?o }', (err, results) => {
+                if (!err) {
+                  this.patternIndividuals = this.getPatternIndividuals(results);
+                  console.log(this.patternIndividuals);
+                }
+              });
+            });
+          });
+        }, err => console.log(err));
     });
   }
 
-  onIndividualSelected(individual) {
-    new jOWL.SPARQL_DL(`PropertyValue(${individual.URI}, ?p, ?t)`).execute({
-      onComplete: (result) => {
-        const objectProperties = [];
-        const dataTypeProperties = [];
-        this.selectedIndividual = individual;
-        result.results.forEach(p => {
-          if (p['?p'].type === 'owl:DatatypeProperty') {
-            dataTypeProperties.push(p);
-          } else {
-            objectProperties.push(p);
-          }
-        });
-        this.selectedIndividual.objectProperties = objectProperties;
-        this.selectedIndividual.dataTypeProperties = dataTypeProperties;
-        console.log(this.selectedIndividual);
+  getPatternIndividuals(RDFtriples) {
+    const predicate = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
+    const patternIndividuals = [];
+    RDFtriples.forEach(result => {
+      if (result.p.value === predicate && this.patternTypes.includes(result.o.value)) {
+        patternIndividuals.push(result.s);
       }
     });
+    return patternIndividuals;
   }
 
-  onEdit(property) {
-    this.isEditMode = property['?p'].URI;
-    console.log(this.isEditMode);
-  }
-  
-  onSaveClick() {
-    this.isEditMode = '';
-    console.log(this.selectedIndividual);
-  }
+  getRelationshipsOfPattern() {
 
-  creatRdfFile() {
-    const prefix = 'pattern';
-    const prefixValue = 'https://patternpedia.github.io/linkedOpenPatternClient/assets/vocabulary/semantic-pattern.rdf';
-    const header = `<rdf:RDF
-    xmlns:${prefix} = "${prefixValue}"
-    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#">`;
   }
 
 }
