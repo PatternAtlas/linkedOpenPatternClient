@@ -15,7 +15,7 @@ export class ModalAddRelationshipComponent implements OnInit {
   selectedPRD;
   selectedPattern;
   additionalInformation = '';
-  constructor(public activeModal: NgbActiveModal,  private ghService: GithubService, private sparqlService: SparqlService) { }
+  constructor(public activeModal: NgbActiveModal, private ghService: GithubService, private sparqlService: SparqlService) { }
 
 
   ngOnInit() {
@@ -77,33 +77,33 @@ export class ModalAddRelationshipComponent implements OnInit {
   getPatternIndividuals() {
     const patterns = [];
     this.ghService.getFilesOfADirectory('assets/individuals')
-    .subscribe(fileInfos => {
-      this.sparqlService.crawlPattern(fileInfos)
-      .subscribe((succ) => {
-        rdfstore.create(function (err, store) {
-          store.load('text/turtle', succ.graphAsTurtleString, function (err, results) {
-            const predicate = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
-            const object = 'http://purl.org/semantic-pattern#CloudComputingFundamental';
-            store.execute('SELECT * { ?s ?p ?o }', (err, results) => {
-              if(!err) {
-              results.forEach(result => {
-                  if(result.p.value === predicate && result.o.value === object) {
-                    patterns.push(result.s);
-                    console.log(result)
-                  }               
+      .subscribe(fileInfos => {
+        this.sparqlService.crawlPattern(fileInfos)
+          .subscribe((succ: any) => {
+            rdfstore.create(function (err, store) {
+              store.load('text/turtle', succ.graphAsTurtleString, function (err, results) {
+                const predicate = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
+                const object = 'http://purl.org/semantic-pattern#CloudComputingFundamental';
+                store.execute('SELECT * { ?s ?p ?o }', (err, results) => {
+                  if (!err) {
+                    results.forEach(result => {
+                      if (result.p.value === predicate && result.o.value === object) {
+                        patterns.push(result.s);
+                        console.log(result);
+                      }
+                    });
+                  }
+                });
               });
-              }
             });
-          });
-        });
-        this.patterns = patterns;
-      }, err => console.log(err));
-    });
+            this.patterns = patterns;
+          }, err => console.log(err));
+      });
   }
 
   close() {
     const relationship = {
-      linkedPattern : this.selectedPattern,
+      linkedPattern: this.selectedPattern,
       prdType: this.selectedPRD,
       additionalInformation: this.additionalInformation
     };

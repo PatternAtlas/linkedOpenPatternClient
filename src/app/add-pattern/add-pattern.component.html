@@ -22,7 +22,8 @@
       </div>
     </div>
     <div class="col-md-8 col-lg-8">
-      <div class="panel panel-default">
+      <ng-template #selectPatternType>Please select a PatternType</ng-template>
+      <div class="panel panel-default" *ngIf="selectedNode.label; else selectPatternType">
         <div class="panel-heading">
           <div class="row">
             <div class="col-lg-10">
@@ -39,11 +40,8 @@
           </div>
           <div class="row">
             <div *ngFor="let relationship of instance?.relationships">
-                <ng-template #tipContent>Hello!</ng-template>
-                <a [ngbTooltip]="tipContent"> {{relationship.prdType.name}} </a> relationship to {{relationship.linkedPattern.value}}
-                <button type="button" class="btn btn-outline-secondary" [ngbTooltip]="tipContent">
-                    I've got markup and bindings in my tooltip!
-                  </button>
+                <ng-template #tipContent><markdown>{{relationship.additionalInformation}}</markdown></ng-template>
+                <a [ngbTooltip]="tipContent"> {{relationship.prdType.name}} </a> relationship to <a>{{relationship.linkedPattern.value}}</a>
             </div>
          </div>
           <div class="row add-relationship-row">
@@ -56,9 +54,9 @@
     </div>
   </div>
   
-  <div class="row">
+  <div class="row" *ngIf="selectedNode.label">
     <div class="col-lg-offset-9 col-lg-2 save-button">
-          <button type="button" class="btn btn-lg btn-default" (click)="onSaveClick()"  ngbTooltip="Tooltip on top">save</button>
+          <button type="button" class="btn btn-lg btn-default" (click)="onSaveClick()">save</button>
     </div>
   </div>
   

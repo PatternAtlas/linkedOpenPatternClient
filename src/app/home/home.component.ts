@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.ghService.getFilesOfADirectory('assets/individuals')
     .subscribe(fileInfos => {
       this.sparqlService.crawlPattern(fileInfos)
-      .subscribe((succ) => {
+      .subscribe((succ: any) => {
         rdfstore.create(function (err, store) {
           console.log(store);
           store.load('text/turtle', succ.graphAsTurtleString, function (err, results) {
