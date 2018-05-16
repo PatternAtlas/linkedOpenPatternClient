@@ -25,14 +25,6 @@
           </div>
         </div>
         <div class="panel-body">
-          <!-- <div class="row">
-            <div class="col-lg-2 description-label">
-              owl:Class:
-            </div>
-            <div class="col-lg-10">
-              {{selectedIndividual?.Class}}
-            </div>
-          </div> -->
           <div class="row" *ngFor="let property of selectedIndividual?.dataTypeProperties">
             <markdown class="col-lg-12" (click)="onEdit(property)" *ngIf="isEditMode != property.p.value">
               {{property.o.value}}
@@ -45,9 +37,10 @@
             </div>
             <ul class="col-lg-10">
               <div *ngFor="let relationship of selectedIndividual?.relationships">
-                  <ng-template #tipContent><markdown>{{relationship.additionalDescription}}</markdown></ng-template>
-                  <a [ngbTooltip]="tipContent"> {{relationship.type | iriprettifier}} </a> relationship to <a>{{relationship.target | iriprettifier}}</a>
-              </div>
+                  <ng-template #toolTipContent>{{relationship.additionalDescription}}</ng-template>
+                  <a [ngbTooltip]="toolTipContent"> {{relationship.type | iriprettifier}} </a> relationship to <a class="individual" (click)="onPatternLinkClicked(relationship.target)">{{relationship.target | iriprettifier}}</a>
+                  <pre>{{relationship.additionalDescription}}</pre>
+                </div>
             </ul>
           </div>
         </div>
@@ -55,5 +48,4 @@
       <ng-template #selectIndivdual>Please select an Individual.</ng-template>
     </div>
   </div>
-
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { GithubService } from '../../_services/github.service';
 import { SparqlService } from '../../_services/sparql.service';
 
@@ -7,7 +7,8 @@ declare var SimpleMDE: any;
 @Component({
   selector: 'app-individuals-overview',
   templateUrl: './individuals-overview.component.html',
-  styleUrls: ['./individuals-overview.component.css']
+  styleUrls: ['./individuals-overview.component.css'],
+ // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IndividualsOverviewComponent {
 
@@ -27,10 +28,10 @@ export class IndividualsOverviewComponent {
     'http://purl.org/semantic-pattern#SeeAlso',
   ];
 
-  patternIndividuals = [1];
+  patternIndividuals;
   selectedIndividual;
   isEditMode = '';
-  constructor(private ghService: GithubService, private sparqlService: SparqlService) { }
+  constructor(private ghService: GithubService, private sparqlService: SparqlService, private ref: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     this.ghService.getFilesOfADirectory('assets/individuals')
@@ -43,6 +44,7 @@ export class IndividualsOverviewComponent {
                 if (!err) {
                   this.patternIndividuals = this.getPatternIndividuals(results);
                   console.log(this.patternIndividuals);
+                  this.ref.detectChanges();
                 }
               });
             });
@@ -115,6 +117,14 @@ export class IndividualsOverviewComponent {
 
   onPatternSelected(pattern) {
     this.selectedIndividual = pattern;
+    this.ref.detectChanges();
+  }
+
+  onPatternLinkClicked(patternIRI){
+    this.selectedIndividual = this.patternIndividuals.find(function(el) {
+      return el.IRI === patternIRI;
+    });
+    this.ref.detectChanges();
   }
 
 }
