@@ -1,0 +1,12 @@
+<rdf:RDF
+    xmlns:pattern = "http://purl.org/semantic-pattern#"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
+<pattern:Alternative rdf:ID="Alternative"> 
+    <pattern:additionalDescription>This is an alternative here is more information:
+
+* info 1
+* info2</pattern:additionalDescription> 
+<pattern:hasSource rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/periodic-workload"></pattern:hasSource> 
+<pattern:hasTarget rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/static-workload.rdf#StaticWorkload"></pattern:hasTarget> 
+</pattern:Alternative> 
+</rdf:RDF>
