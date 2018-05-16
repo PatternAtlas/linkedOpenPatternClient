@@ -33,6 +33,7 @@ import { UserService } from './_services/user.service';
 import { AuthGuardService } from './_guards/auth-guard.service';
 import { DataSharingService } from './_services/data-sharing.service';
 import { ModalAddRelationshipComponent } from './modal-add-relationship/modal-add-relationship.component';
+import { IriprettifierPipe } from './_pipes/iriprettifier.pipe';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ModalAddRelationshipComponent } from './modal-add-relationship/modal-ad
     IndividualsOverviewComponent,
     BrowserClassesOverviewComponent,
     LoginComponent,
-    ModalAddRelationshipComponent
+    ModalAddRelationshipComponent,
+    IriprettifierPipe
   ],
   imports: [
     AppRoutingModule,

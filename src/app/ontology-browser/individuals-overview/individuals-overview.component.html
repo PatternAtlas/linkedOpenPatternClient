@@ -6,7 +6,7 @@
         <div class="panel-body">
           <ul>
             <li *ngFor="let individual of patternIndividuals" (click)="onPatternSelected(individual)">
-              <a class="individual">{{individual.IRI}}</a>
+              <a class="individual">{{individual.IRI | iriprettifier}}</a>
             </li>
           </ul>
         </div>
@@ -17,7 +17,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-lg-10">
-              Description of {{selectedIndividual?.IRI}}
+              Description of {{selectedIndividual?.IRI | iriprettifier}}
             </div>
             <div class="col-lg-2 save-button">
               <button type="button" class="btn btn-lg btn-default" *ngIf="isEditMode != ''" (click) = "onSaveClick()">save</button>
@@ -46,7 +46,7 @@
             <ul class="col-lg-10">
               <div *ngFor="let relationship of selectedIndividual?.relationships">
                   <ng-template #tipContent><markdown>{{relationship.additionalDescription}}</markdown></ng-template>
-                  <a [ngbTooltip]="tipContent"> {{relationship.type}} </a> relationship to <a>{{relationship.target}}</a>
+                  <a [ngbTooltip]="tipContent"> {{relationship.type | iriprettifier}} </a> relationship to <a>{{relationship.target | iriprettifier}}</a>
               </div>
             </ul>
           </div>
