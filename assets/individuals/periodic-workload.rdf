@@ -1,0 +1,14 @@
+<rdf:RDF
+    xmlns:pattern = "http://purl.org/semantic-pattern#"
+    xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
+<pattern:CloudComputingFundamentalPattern rdf:ID="PeriodicWorkload"> 
+    <pattern:intent>### intent
+IT resources with a peaking utilization at reoccurring time intervals experience periodic workload.</pattern:intent> 
+    <pattern:drivingQuestion>### drivingQuestion
+How can a periodically peaking utilization over time be characterized and how can applications experiencing this workload benefit from cloud computing?</pattern:drivingQuestion> 
+    <pattern:context>### context
+In our real lives, periodic tasks and routines are very common. For example, monthly paychecks, monthly telephone bills, yearly car checkups, weekly status reports, or the daily use of public transport during rush hour, all these tasks and routines occur in well-defined intervals.</pattern:context> 
+    <pattern:solution>### solution
+From a customer perspective the cost-saving potential in scope of Periodic Workload is to use a provider with a pay-per-use pricing model allowing the decommissioning of resources during non-peak times.</pattern:solution> 
+</pattern:CloudComputingFundamentalPattern> 
+</rdf:RDF>
