@@ -37,7 +37,7 @@
             </div>
             <ul class="col-lg-10">
               <div *ngFor="let relationship of selectedIndividual?.relationships">
-                  <ng-template #toolTipContent>{{relationship.additionalDescription}}</ng-template>
+                  <ng-template #toolTipContent>hello{{relationship.additionalDescription}}</ng-template>
                   <a [ngbTooltip]="toolTipContent"> {{relationship.type | iriprettifier}} </a> relationship to <a class="individual" (click)="onPatternLinkClicked(relationship.target)">{{relationship.target | iriprettifier}}</a>
                   <pre>{{relationship.additionalDescription}}</pre>
                 </div>

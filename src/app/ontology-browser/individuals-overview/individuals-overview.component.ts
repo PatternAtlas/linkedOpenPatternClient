@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { GithubService } from '../../_services/github.service';
 import { SparqlService } from '../../_services/sparql.service';
 
@@ -8,7 +8,6 @@ declare var SimpleMDE: any;
   selector: 'app-individuals-overview',
   templateUrl: './individuals-overview.component.html',
   styleUrls: ['./individuals-overview.component.css'],
- // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IndividualsOverviewComponent {
 
@@ -31,7 +30,9 @@ export class IndividualsOverviewComponent {
   patternIndividuals;
   selectedIndividual;
   isEditMode = '';
-  constructor(private ghService: GithubService, private sparqlService: SparqlService, private ref: ChangeDetectorRef) { }
+
+  
+  constructor(private ghService: GithubService, private sparqlService: SparqlService, private ref: ChangeDetectorRef, private appRev: ApplicationRef) { }
 
   ngAfterViewInit() {
     this.ghService.getFilesOfADirectory('assets/individuals')
@@ -43,8 +44,7 @@ export class IndividualsOverviewComponent {
               store.execute('SELECT * { ?s ?p ?o }', (err, results) => {
                 if (!err) {
                   this.patternIndividuals = this.getPatternIndividuals(results);
-                  console.log(this.patternIndividuals);
-                  this.ref.detectChanges();
+                  this.appRev.tick();
                 }
               });
             });
@@ -117,14 +117,14 @@ export class IndividualsOverviewComponent {
 
   onPatternSelected(pattern) {
     this.selectedIndividual = pattern;
-    this.ref.detectChanges();
+    this.appRev.tick();
   }
 
   onPatternLinkClicked(patternIRI){
     this.selectedIndividual = this.patternIndividuals.find(function(el) {
       return el.IRI === patternIRI;
     });
-    this.ref.detectChanges();
+    this.appRev.tick();
   }
 
 }
