@@ -1,9 +1,31 @@
-<textarea rows="10" cols="50" [(ngModel)]="query"></textarea>
-<button class="btn btn-default" (click)="sendQuery()">Send</button>
-<p>Result: </p>
+<div class="container-fluid">
+  <textarea rows="10" cols="50" [(ngModel)]="query"></textarea>
+  <button class="btn btn-default" (click)="sendQuery()">Send</button>
+  
+  <div class="row table-header" *ngIf="queryResult">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      subject
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      predicate
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      object
+    </div>
+  </div>
+  
+  <div class="row table-row" *ngFor="let triple of queryResult">
+    
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      {{triple.s}}
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      {{triple.p}}
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      {{triple.o}}
+    </div>
+    
+  </div>
 
-<button type="button" class="btn btn-default" (click)="login()">login</button>
-<button type="button" class="btn btn-outline-secondary mr-2" placement="right" ngbTooltip="Tooltip on left">ddd</button>
-<p>
-        <strong ngbTooltip="Tooltip on left" #tleft="ngbTooltip" triggers="manual" placement="bottom">Tooltip is here</strong>?
-      </p>
+</div>
