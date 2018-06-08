@@ -141,7 +141,7 @@ export class AddPatternComponent implements OnInit {
   onSaveClick() {
     const contentPatternFile = this.createPatternRdfData(this.instance);
     const authToken = localStorage.getItem('token');
-    this.githubService.addPattern(this.instance.fileName, contentPatternFile, '7ee70d3e1beb16ef481b0d71bc8d81eb10e76605')
+    this.githubService.addPattern(this.instance.fileName, contentPatternFile, authToken)
       .subscribe(succ => {
         this.toastr.success('Pattern saved!', 'Success!');
         this.instance.relationships.forEach(relationship => {
@@ -154,7 +154,7 @@ export class AddPatternComponent implements OnInit {
     const contentOfRelationshipFile = this.createRelationshipRdfData(relationship);
     const authToken = localStorage.getItem('token');
     const fileNameOfRelationship = this.instance.fileName + relationship.prdType.name; // todo generate unique filename
-    this.githubService.addPattern(fileNameOfRelationship, contentOfRelationshipFile, '')
+    this.githubService.addPattern(fileNameOfRelationship, contentOfRelationshipFile, authToken)
       .subscribe(succ => {
         this.toastr.success('Relationship saved!', 'Success!');
       }, err => this.toastr.error('Something went wrong!', 'Error!'));

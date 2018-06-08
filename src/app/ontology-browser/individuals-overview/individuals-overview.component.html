@@ -17,7 +17,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-lg-10">
-              Description of {{selectedIndividual?.IRI | iriprettifier}}
+             <h3>{{selectedIndividual?.IRI | iriprettifier}}</h3>
             </div>
             <div class="col-lg-2 save-button">
               <button type="button" class="btn btn-lg btn-default" *ngIf="isEditMode != ''" (click) = "onSaveClick()">save</button>
@@ -37,9 +37,12 @@
             </div>
             <ul class="col-lg-10">
               <div *ngFor="let relationship of selectedIndividual?.relationships">
-                  <ng-template #toolTipContent>hello{{relationship.additionalDescription}}</ng-template>
-                  <a [ngbTooltip]="toolTipContent"> {{relationship.type | iriprettifier}} </a> relationship to <a class="individual" (click)="onPatternLinkClicked(relationship.target)">{{relationship.target | iriprettifier}}</a>
-                  <pre>{{relationship.additionalDescription}}</pre>
+                  <!-- <ng-template #toolTipContent>{{additionalDescription}}</ng-template> -->
+                  <div class="tooltip">
+                    {{relationship.type | iriprettifier}}
+                    <markdown class="tooltiptext">{{relationship.additionalDescription}}</markdown>
+                  </div> relationship to <a class="individual" (click)="onPatternLinkClicked(relationship.target)">{{relationship.target | iriprettifier}}</a>
+                  <!-- <markdown class="tooltip-text" *ngIf="isMouseOver">{{relationship.additionalDescription}}</markdown> -->
                 </div>
             </ul>
           </div>

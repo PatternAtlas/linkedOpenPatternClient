@@ -31,12 +31,12 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     data: { title: 'Add Pattern' }
   },
-  {
-    path: 'addInstance',
-    canActivate: [AuthGuard],
-    component: ClassesOverviewComponent,
-    data: { title: 'Add Foaf' }
-  },
+  // {
+  //   path: 'addInstance',
+  //   canActivate: [AuthGuard],
+  //   component: ClassesOverviewComponent,
+  //   data: { title: 'Add Foaf' }
+  // },
   {
     path: 'addInstance/:label',
     component: InstanceCreatorComponent

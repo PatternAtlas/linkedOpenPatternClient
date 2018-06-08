@@ -30,6 +30,7 @@ export class IndividualsOverviewComponent {
   patternIndividuals;
   selectedIndividual;
   isEditMode = '';
+  isMouseOver = false;
 
   
   constructor(private ghService: GithubService, private sparqlService: SparqlService, private ref: ChangeDetectorRef, private appRev: ApplicationRef) { }
@@ -127,4 +128,14 @@ export class IndividualsOverviewComponent {
     this.appRev.tick();
   }
 
+  over(additionalDescription){
+   this.isMouseOver = true;
+   this.appRev.tick();
+ }
+
+ leave(){
+   console.log("leave");
+   this.isMouseOver = false;
+   this.appRev.tick();
+ }
 }
