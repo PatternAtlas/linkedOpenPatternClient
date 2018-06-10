@@ -6,7 +6,7 @@
         <div class="panel-body">
           <ul>
             <li *ngFor="let individual of patternIndividuals" (click)="onPatternSelected(individual)">
-              <a class="individual">{{individual.IRI | iriprettifier}}</a>
+              <a class="individual">{{individual.iri | iriprettifier}}</a>
             </li>
           </ul>
         </div>
@@ -17,7 +17,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-lg-10">
-              <h3>{{selectedIndividual?.IRI | iriprettifier}}</h3>
+              <h3>{{selectedIndividual?.iri | iriprettifier}}</h3>
             </div>
             <div class="col-lg-2 save-button">
               <button type="button" class="btn btn-lg btn-default" *ngIf="isEditMode != ''" (click)="onSaveClick()">save</button>

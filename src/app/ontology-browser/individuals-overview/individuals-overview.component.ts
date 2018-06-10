@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Applicat
 import { GithubService } from '../../_services/github.service';
 import { SparqlService } from '../../_services/sparql.service';
 import { ConcreteSolution } from '../../_models/concrete-solution';
+import { Relationship } from '../../_models/relationship';
+import { Pattern } from '../../_models/pattern';
 
 declare var SimpleMDE: any;
 
@@ -66,15 +68,10 @@ export class IndividualsOverviewComponent implements AfterViewInit {
     const patternIndividuals = [];
     rdfTriples.forEach(result => {
       if (result.p.value === predicate && this.patternTypes.includes(result.o.value)) {
-        const patternIndividual = {
-          IRI: result.s.value,
-          dataTypeProperties: [],
-          relationships: [],
-          concreteSolutions: []
-        }
-        patternIndividual.dataTypeProperties = this.getDataTypeProperties(rdfTriples, patternIndividual.IRI);
-        patternIndividual.relationships = this.getRelationshipsOfPattern(rdfTriples, patternIndividual.IRI);
-        patternIndividual.concreteSolutions = this.getConcreteSolutionsOfPattern(rdfTriples, patternIndividual.IRI);
+        const patternIndividual = new Pattern(result.s.value);
+        patternIndividual.dataTypeProperties = this.getDataTypeProperties(rdfTriples, patternIndividual.iri);
+        patternIndividual.relationships = this.getRelationshipsOfPattern(rdfTriples, patternIndividual.iri);
+        patternIndividual.concreteSolutions = this.getConcreteSolutionsOfPattern(rdfTriples, patternIndividual.iri);
         patternIndividuals.push(patternIndividual);
       }
     });
@@ -87,7 +84,7 @@ export class IndividualsOverviewComponent implements AfterViewInit {
       if (triple.s.value === patternIRI && triple.o.token === "literal") {
         properties.push(triple);
       }
-    })
+    });
     return properties;
   }
 
@@ -95,12 +92,7 @@ export class IndividualsOverviewComponent implements AfterViewInit {
     const relationshipsOfPattern = [];
     const irisOfPRDs = this.getIRIsOFPRDs(rdfTriples, patternIRI);
     irisOfPRDs.forEach(iri => {
-      let relationship = {
-        IRI: iri,
-        type: '',
-        additionalDescription: '',
-        target: ''
-      }
+      const relationship = new Relationship(iri);
       rdfTriples.forEach(triple => {
         if (triple.s.value === iri && triple.p.value === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
           relationship.type = triple.o.value;
