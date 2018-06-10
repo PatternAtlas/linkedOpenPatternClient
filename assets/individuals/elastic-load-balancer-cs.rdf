@@ -8,8 +8,8 @@
 
   <pattern:ConcreteSolutionDescriptor rdf:ID="ElasticLoadBalancerCS">
     <dc:description>The AWS::ElasticLoadBalancingV2::LoadBalancer resource creates an Elastic Load Balancing Application or Network Load Balancer for AWS</dc:description>
-    <pattern:implementsPattern rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/elatic-load-balancer.rdf"></pattern:implementsPattern>
-    <pattern:hasCSArtifact></pattern:hasCSArtifact>
+    <pattern:implementsPattern rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/elastic-load-balancer.rdf#ElasticLoadBalancer"></pattern:implementsPattern>
+    <pattern:hasCSArtifact>"https://github.com/PatternPedia/linkedOpenPatternClient/blob/gh-pages/assets/concrete-solution-artifacts/aws-elb.json"</pattern:hasCSArtifact>
   </pattern:ConcreteSolutionDescriptor>
 
 
