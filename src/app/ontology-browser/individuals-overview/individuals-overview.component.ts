@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ApplicationRef, AfterViewInit } from '@angular/core';
 import { GithubService } from '../../_services/github.service';
 import { SparqlService } from '../../_services/sparql.service';
+import { ConcreteSolution } from '../../_models/concrete-solution';
 
 declare var SimpleMDE: any;
 
@@ -16,7 +17,8 @@ export class IndividualsOverviewComponent implements AfterViewInit {
     'http://purl.org/semantic-pattern#CloudComputingFundamental',
     'http://purl.org/semantic-pattern#CloudComputingPattern',
     'http://purl.org/semantic-pattern#CloudOfferingPattern',
-    'http://purl.org/semantic-pattern#CompositeCloudApplicationPattern'
+    'http://purl.org/semantic-pattern#CompositeCloudApplicationPattern',
+    'http://purl.org/semantic-pattern#CloudApplicationManagementPattern'
   ];
 
   prdTypes = [
@@ -67,10 +69,12 @@ export class IndividualsOverviewComponent implements AfterViewInit {
         const patternIndividual = {
           IRI: result.s.value,
           dataTypeProperties: [],
-          relationships: []
+          relationships: [],
+          concreteSolutions: []
         }
         patternIndividual.dataTypeProperties = this.getDataTypeProperties(rdfTriples, patternIndividual.IRI);
         patternIndividual.relationships = this.getRelationshipsOfPattern(rdfTriples, patternIndividual.IRI);
+        patternIndividual.concreteSolutions = this.getConcreteSolutionsOfPattern(rdfTriples, patternIndividual.IRI);
         patternIndividuals.push(patternIndividual);
       }
     });
@@ -105,10 +109,37 @@ export class IndividualsOverviewComponent implements AfterViewInit {
         } else if (triple.s.value === iri && triple.p.value === 'http://purl.org/semantic-pattern#hasTarget') {
           relationship.target = triple.o.value;
         }
-      })
+      });
       relationshipsOfPattern.push(relationship);
-    })
+    });
     return relationshipsOfPattern;
+  }
+
+  getConcreteSolutionsOfPattern(rdfTriples, patternIRI) {
+    const concreteSolutionsOfPattern = [];
+    const irisOfCSDs = this.getIRIsOfCSDs(rdfTriples, patternIRI);
+    irisOfCSDs.forEach(iri => {
+      const concreteSolution = new ConcreteSolution(iri);
+      rdfTriples.forEach(triple => {
+        if (triple.s.value === iri && triple.p.value === 'http://purl.org/semantic-pattern#hasCSArtifact') {
+          concreteSolution.artifactIri = triple.o.value;
+        } else if (triple.s.value === iri && triple.p.value === 'http://purl.org/dc/terms/description') {
+          concreteSolution.description = triple.o.value;
+        }
+      });
+      concreteSolutionsOfPattern.push(concreteSolution);
+    });
+    return concreteSolutionsOfPattern;
+  }
+
+  getIRIsOfCSDs(rdfTriples, patternIRI) {
+    const irisOfCSDs = [];
+    rdfTriples.forEach(triple => {
+      if (triple.o.value === patternIRI && triple.p.value === 'http://purl.org/semantic-pattern#implementsPattern') {
+        irisOfCSDs.push(triple.s.value);
+      }
+    });
+    return irisOfCSDs;
   }
 
   getIRIsOFPRDs(rdfTriples, patternIRI) {
@@ -117,7 +148,7 @@ export class IndividualsOverviewComponent implements AfterViewInit {
       if (triple.o.value === patternIRI && triple.p.value === 'http://purl.org/semantic-pattern#hasSource') {
         irisOfPRDs.push(triple.s.value);
       }
-    })
+    });
     return irisOfPRDs;
   }
 
