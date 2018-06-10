@@ -1,0 +1,18 @@
+<rdf:RDF
+  xmlns:pattern = "http://purl.org/semantic-pattern#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc = "http://purl.org/dc/terms/">
+
+  
+
+
+  <pattern:ConcreteSolutionDescriptor rdf:ID="ElasticLoadBalancerCS">
+    <dc:description>The AWS::ElasticLoadBalancingV2::LoadBalancer resource creates an Elastic Load Balancing Application or Network Load Balancer for AWS</dc:description>
+    <pattern:implementsPattern rdf:resource="https://patternpedia.github.io/linkedOpenPatternClient/assets/individuals/elatic-load-balancer.rdf"></pattern:implementsPattern>
+    <pattern:hasCSArtifact>"https://github.com/PatternPedia/linkedOpenPatternClient/blob/gh-pages/assets/concrete-solution-artifacts/aws-elb.json"</pattern:hasCSArtifact>
+  </pattern:ConcreteSolutionDescriptor>
+
+
+
+ 
+</rdf:RDF>

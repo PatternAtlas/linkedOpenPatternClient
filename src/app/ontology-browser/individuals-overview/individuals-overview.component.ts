@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ApplicationRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ApplicationRef, AfterViewInit } from '@angular/core';
 import { GithubService } from '../../_services/github.service';
 import { SparqlService } from '../../_services/sparql.service';
 
@@ -9,7 +9,7 @@ declare var SimpleMDE: any;
   templateUrl: './individuals-overview.component.html',
   styleUrls: ['./individuals-overview.component.css'],
 })
-export class IndividualsOverviewComponent {
+export class IndividualsOverviewComponent implements AfterViewInit {
 
   patternTypes = [
     'http://purl.org/semantic-pattern#CloudComputingFundamentalPattern',
@@ -19,7 +19,7 @@ export class IndividualsOverviewComponent {
     'http://purl.org/semantic-pattern#CompositeCloudApplicationPattern'
   ];
 
-  prdTypes =  [
+  prdTypes = [
     'http://purl.org/semantic-pattern#PRD',
     'http://purl.org/semantic-pattern#Alternative',
     'http://purl.org/semantic-pattern#KnownUse',
@@ -32,26 +32,31 @@ export class IndividualsOverviewComponent {
   isEditMode = '';
   isMouseOver = false;
 
-  
-  constructor(private ghService: GithubService, private sparqlService: SparqlService, private ref: ChangeDetectorRef, private appRev: ApplicationRef) { }
+
+  constructor(
+    private ghService: GithubService,
+    private sparqlService: SparqlService,
+    private ref: ChangeDetectorRef,
+    private appRev: ApplicationRef
+  ) { }
 
   ngAfterViewInit() {
     this.ghService.getFilesOfADirectory('assets/individuals')
-    .subscribe(fileInfos => {
-      this.sparqlService.crawlPattern(fileInfos)
-        .subscribe((succ: any) => {
-          rdfstore.create((err, store) => {
-            store.load('text/turtle', succ.graphAsTurtleString, (err, results) => {
-              store.execute('SELECT * { ?s ?p ?o }', (err, results) => {
-                if (!err) {
-                  this.patternIndividuals = this.getPatternIndividuals(results);
-                  this.appRev.tick();
-                }
+      .subscribe(fileInfos => {
+        this.sparqlService.crawlPattern(fileInfos)
+          .subscribe((succ: any) => {
+            rdfstore.create((err, store) => {
+              store.load('text/turtle', succ.graphAsTurtleString, (err, results) => {
+                store.execute('SELECT * { ?s ?p ?o }', (err, results) => {
+                  if (!err) {
+                    this.patternIndividuals = this.getPatternIndividuals(results);
+                    this.appRev.tick();
+                  }
+                });
               });
             });
-          });
-        }, err => console.log(err));
-    });
+          }, err => console.log(err));
+      });
   }
 
   getPatternIndividuals(rdfTriples) {
@@ -60,8 +65,8 @@ export class IndividualsOverviewComponent {
     rdfTriples.forEach(result => {
       if (result.p.value === predicate && this.patternTypes.includes(result.o.value)) {
         const patternIndividual = {
-          IRI : result.s.value,
-          dataTypeProperties : [],
+          IRI: result.s.value,
+          dataTypeProperties: [],
           relationships: []
         }
         patternIndividual.dataTypeProperties = this.getDataTypeProperties(rdfTriples, patternIndividual.IRI);
@@ -73,9 +78,9 @@ export class IndividualsOverviewComponent {
   }
 
   getDataTypeProperties(rdfTriples, patternIRI) {
-    const properties =[];
+    const properties = [];
     rdfTriples.forEach(triple => {
-      if(triple.s.value === patternIRI && triple.o.token === "literal") {
+      if (triple.s.value === patternIRI && triple.o.token === "literal") {
         properties.push(triple);
       }
     })
@@ -83,33 +88,33 @@ export class IndividualsOverviewComponent {
   }
 
   getRelationshipsOfPattern(rdfTriples, patternIRI) {
-   const relationshipsOfPattern = [];
-   const irisOfPRDs = this.getIRIsOFPRDs(rdfTriples, patternIRI);
-   irisOfPRDs.forEach(iri => {
-     let relationship = {
-      IRI: iri, 
-      type: '',
-      additionalDescription: '',
-      target: ''
-     }
-     rdfTriples.forEach(triple => {
-       if(triple.s.value === iri && triple.p.value === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' ) {
-         relationship.type = triple.o.value;
-       } else if (triple.s.value === iri && triple.p.value === 'http://purl.org/semantic-pattern#additionalDescription'){
-         relationship.additionalDescription = triple.o.value;
-       } else if  (triple.s.value === iri && triple.p.value === 'http://purl.org/semantic-pattern#hasTarget') {
-         relationship.target = triple.o.value;
-       }
-     })
-     relationshipsOfPattern.push(relationship);
-   })
-   return relationshipsOfPattern;
+    const relationshipsOfPattern = [];
+    const irisOfPRDs = this.getIRIsOFPRDs(rdfTriples, patternIRI);
+    irisOfPRDs.forEach(iri => {
+      let relationship = {
+        IRI: iri,
+        type: '',
+        additionalDescription: '',
+        target: ''
+      }
+      rdfTriples.forEach(triple => {
+        if (triple.s.value === iri && triple.p.value === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
+          relationship.type = triple.o.value;
+        } else if (triple.s.value === iri && triple.p.value === 'http://purl.org/semantic-pattern#additionalDescription') {
+          relationship.additionalDescription = triple.o.value;
+        } else if (triple.s.value === iri && triple.p.value === 'http://purl.org/semantic-pattern#hasTarget') {
+          relationship.target = triple.o.value;
+        }
+      })
+      relationshipsOfPattern.push(relationship);
+    })
+    return relationshipsOfPattern;
   }
 
-  getIRIsOFPRDs (rdfTriples, patternIRI) {
+  getIRIsOFPRDs(rdfTriples, patternIRI) {
     const irisOfPRDs = [];
     rdfTriples.forEach(triple => {
-      if(triple.o.value === patternIRI && triple.p.value === 'http://purl.org/semantic-pattern#hasSource') {
+      if (triple.o.value === patternIRI && triple.p.value === 'http://purl.org/semantic-pattern#hasSource') {
         irisOfPRDs.push(triple.s.value);
       }
     })
@@ -121,21 +126,21 @@ export class IndividualsOverviewComponent {
     this.appRev.tick();
   }
 
-  onPatternLinkClicked(patternIRI){
-    this.selectedIndividual = this.patternIndividuals.find(function(el) {
+  onPatternLinkClicked(patternIRI) {
+    this.selectedIndividual = this.patternIndividuals.find(function (el) {
       return el.IRI === patternIRI;
     });
     this.appRev.tick();
   }
 
-  over(additionalDescription){
-   this.isMouseOver = true;
-   this.appRev.tick();
- }
+  over(additionalDescription) {
+    this.isMouseOver = true;
+    this.appRev.tick();
+  }
 
- leave(){
-   console.log("leave");
-   this.isMouseOver = false;
-   this.appRev.tick();
- }
+  leave() {
+    console.log("leave");
+    this.isMouseOver = false;
+    this.appRev.tick();
+  }
 }
