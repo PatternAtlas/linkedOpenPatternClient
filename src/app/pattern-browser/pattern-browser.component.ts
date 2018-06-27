@@ -1,18 +1,18 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ApplicationRef, AfterViewInit } from '@angular/core';
-import { GithubService } from '../../_services/github.service';
-import { SparqlService } from '../../_services/sparql.service';
-import { ConcreteSolution } from '../../_models/concrete-solution';
-import { Relationship } from '../../_models/relationship';
-import { Pattern } from '../../_models/pattern';
+import { GithubService } from '../_services/github.service';
+import { SparqlService } from '../_services/sparql.service';
+import { ConcreteSolution } from '../_models/concrete-solution';
+import { Relationship } from '../_models/relationship';
+import { Pattern } from '../_models/pattern';
 
 declare var SimpleMDE: any;
 
 @Component({
-  selector: 'app-individuals-overview',
-  templateUrl: './individuals-overview.component.html',
-  styleUrls: ['./individuals-overview.component.css'],
+  selector: 'app-pattern-browser',
+  templateUrl: './pattern-browser.component.html',
+  styleUrls: ['./pattern-browser.component.css'],
 })
-export class IndividualsOverviewComponent implements AfterViewInit {
+export class PatternBrowserComponent implements AfterViewInit {
 
   patternTypes = [
     'http://purl.org/semantic-pattern#CloudComputingFundamentalPattern',
