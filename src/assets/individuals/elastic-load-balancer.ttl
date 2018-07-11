@@ -1,0 +1,16 @@
+@prefix ns0: <http://purl.org/semantic-pattern#> .
+
+<https://raw.githubusercontent.com/PatternPedia/linkedOpenPatternClient/rdfstore-js-integration/src/assets/individuals/elastic-load-balancer.rdf#ElasticLoadBalancer>
+  a <http://purl.org/semantic-pattern#CloudApplicationManagementPattern> ;
+  ns0:intent """### intent
+     The number of synchronous accesses to an elastically scaled-out application is used to determine the number of required application component instances.
+     """ ;
+  ns0:drivingQuestion """### drivingQuestion
+    How can the number of required application component instances be determined based on monitored synchronous accesses?
+    """ ;
+  ns0:context """### context
+    Application components of a Distributed Application shall be scaled out automatically. Requests sent to an application shall be used as an indicator for the currently experienced workload from which the required number of components instances shall be deducted.
+    """ ;
+  ns0:solution """### solution
+    Based on the number of synchronous requests handled by a load balancer and possibly other utilization information, the required number of required component instances is determined.
+    """ .
