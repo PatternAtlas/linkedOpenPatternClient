@@ -1,0 +1,273 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://purl.org/semantic-pattern#> a owl:Ontology .
+<http://purl.org/semantic-pattern#aggregatesCS>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#CSRDAggregation>
+  ] ;
+  rdfs:range [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#ConcreteSolutionDescriptor>
+  ] .
+
+<http://purl.org/semantic-pattern#hasSource>
+  a owl:ObjectProperty ;
+  owl:inverseOf <http://purl.org/semantic-pattern#isSourceOf> ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#PRD>
+  ] ;
+  rdfs:range [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#Pattern>
+  ] .
+
+<http://purl.org/semantic-pattern#hasTarget>
+  a owl:ObjectProperty ;
+  owl:inverseOf <http://purl.org/semantic-pattern#isTargetOf> ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#PRD>
+  ] ;
+  rdfs:range [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#Pattern>
+  ] .
+
+<http://purl.org/semantic-pattern#implementsPattern>
+  a owl:ObjectProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#ConcreteSolutionDescriptor>
+  ] ;
+  rdfs:range [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#Pattern>
+  ] .
+
+<http://purl.org/semantic-pattern#isSourceOf>
+  a owl:ObjectProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#Pattern>
+  ] ;
+  rdfs:range [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#PRD>
+  ] .
+
+<http://purl.org/semantic-pattern#isTargetOf>
+  a owl:ObjectProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#Pattern>
+  ] ;
+  rdfs:range [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#PRD>
+  ] .
+
+<http://purl.org/semantic-pattern#aggregationDescription>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#CSRDAggregation>
+  ] ;
+  rdfs:range xsd:string .
+
+<http://purl.org/semantic-pattern#context>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#CloudComputingPattern>
+  ] ;
+  rdfs:range rdfs:Literal .
+
+<http://purl.org/semantic-pattern#drivingQuestion>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#CloudComputingPattern>
+  ] ;
+  rdfs:range rdfs:Literal .
+
+<http://purl.org/semantic-pattern#hasCSArtifact>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#ConcreteSolutionDescriptor>
+  ] ;
+  rdfs:range xsd:string .
+
+<http://purl.org/semantic-pattern#intent>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#CloudComputingPattern>
+  ] ;
+  rdfs:range rdfs:Literal .
+
+<http://purl.org/semantic-pattern#patternName>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#Pattern>
+  ] ;
+  rdfs:range rdfs:Literal .
+
+<http://purl.org/semantic-pattern#precondition>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#CSRDAggregation>
+  ] ;
+  rdfs:range xsd:string .
+
+<http://purl.org/semantic-pattern#solution>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#CloudComputingPattern>
+  ] ;
+  rdfs:range rdfs:Literal .
+
+<http://purl.org/semantic-pattern#additionalDescription>
+  a owl:DatatypeProperty ;
+  rdfs:domain [
+    a owl:Restriction ;
+    owl:onProperty owl:topObjectProperty ;
+    owl:someValuesFrom <http://purl.org/semantic-pattern#PRD>
+  ] ;
+  rdfs:range rdfs:Literal .
+
+<http://purl.org/semantic-pattern#Alternative>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#PRD> .
+
+<http://purl.org/semantic-pattern#CSRD> a owl:Class .
+<http://purl.org/semantic-pattern#CSRDAggregation>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#CSRD>, [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#aggregatesCS> ;
+    owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://purl.org/semantic-pattern#ConcreteSolutionDescriptor>
+  ] .
+
+<http://purl.org/semantic-pattern#CSRDAlternative>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#CSRD> .
+
+<http://purl.org/semantic-pattern#CloudApplicationArchitecturePattern>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#CloudComputingPattern> .
+
+<http://purl.org/semantic-pattern#CloudApplicationManagementPattern>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#CloudComputingPattern> .
+
+<http://purl.org/semantic-pattern#CloudComputingFundamentalPattern>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#CloudComputingPattern> .
+
+<http://purl.org/semantic-pattern#CloudComputingPattern>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#Pattern>, [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#intent> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#drivingQuestion> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#context> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#patternName> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#solution> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://purl.org/semantic-pattern#CloudOfferingPattern>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#CloudComputingPattern> .
+
+<http://purl.org/semantic-pattern#CompositeCloudApplicationPattern>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#CloudComputingPattern> .
+
+<http://purl.org/semantic-pattern#ConcreteSolutionDescriptor>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#implementsPattern> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://purl.org/semantic-pattern#Pattern>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#hasCSArtifact> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:string
+  ] .
+
+<http://purl.org/semantic-pattern#ConsiderAfter>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#PRD> .
+
+<http://purl.org/semantic-pattern#KnownUse>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#PRD> .
+
+<http://purl.org/semantic-pattern#PRD>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#hasSource> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://purl.org/semantic-pattern#Pattern>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#hasTarget> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://purl.org/semantic-pattern#Pattern>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://purl.org/semantic-pattern#additionalDescription> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://purl.org/semantic-pattern#Pattern> a owl:Class .
+<http://purl.org/semantic-pattern#SeeAlso>
+  a owl:Class ;
+  rdfs:subClassOf <http://purl.org/semantic-pattern#PRD> .
